@@ -1,89 +1,105 @@
-# 🌐 Abhishek Narsing — Portfolio
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Abhishek Narsing | Full Stack Developer</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.4.4/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans">
+  <!-- Header -->
+  <header class="bg-blue-600 text-white py-10 text-center">
+    <h1 class="text-4xl font-bold">Abhishek Narsing</h1>
+    <p class="text-lg mt-2">Full Stack Developer · Hyderabad, Telangana, India</p>
+    <div class="flex justify-center space-x-6 mt-4">
+      <a href="https://www.linkedin.com/in/abhisheknarsing" target="_blank" class="hover:underline">LinkedIn</a>
+      <a href="https://nabhishek.com" target="_blank" class="hover:underline">Personal Website</a>
+      <a href="mailto:contact@nabhishek.com" class="hover:underline">Contact</a>
+    </div>
+  </header>
 
-Welcome to my personal portfolio website hosted at [abhisheknarsing.github.io](https://abhisheknarsing.github.io).
+  <!-- Summary -->
+  <section class="max-w-4xl mx-auto p-6">
+    <h2 class="text-2xl font-semibold text-blue-700 mb-4">Summary</h2>
+    <p>
+      Developer with a demonstrated history of working in the software industry. Skilled in JavaScript, MERN Stack, Python, Machine Learning,
+      Deep Learning, SEO, Spring Boot, PHP, CodeIgniter, and Android Development. Strong engineering professional with a Bachelor's degree focused
+      in Mechanical Engineering from AVN Institute of Engineering.
+    </p>
+  </section>
 
-This website showcases my professional experience, education, skills, and certifications as a **Full Stack Developer** from **Hyderabad, Telangana, India**.
+  <!-- Experience -->
+  <section class="max-w-4xl mx-auto p-6">
+    <h2 class="text-2xl font-semibold text-blue-700 mb-4">Experience</h2>
+    <div class="space-y-4">
+      <div>
+        <h3 class="font-bold">Capgemini</h3>
+        <p class="text-sm text-gray-600">Senior Consultant · Oct 2024 – Present · Hyderabad, India</p>
+        <p class="text-sm text-gray-600">Software Development Consultant · Nov 2021 – Dec 2024 · Hyderabad, India</p>
+      </div>
 
----
+      <div>
+        <h3 class="font-bold">Ellipsoids</h3>
+        <p class="text-sm text-gray-600">Data Scientist · Jul 2019 – Feb 2023 · Hyderabad, India</p>
+      </div>
 
-## 👨‍💻 About Me
+      <div>
+        <h3 class="font-bold">Es Magico Experiences</h3>
+        <p class="text-sm text-gray-600">MERN Stack Developer · Jul 2021 – Oct 2021 · India</p>
+      </div>
 
-I’m a developer with a demonstrated history of working in the software industry.  
-Skilled in:
-- JavaScript (MERN Stack)
-- Python, Machine Learning, Deep Learning
-- Search Engine Optimization (SEO)
-- Spring Boot, PHP, CodeIgniter
-- Android Development
+      <div>
+        <h3 class="font-bold">StatsFlip</h3>
+        <p class="text-sm text-gray-600">Software Developer · Nov 2017 – Apr 2019 · India</p>
+      </div>
 
-**Bachelor’s degree in Mechanical Engineering** from *AVN Institute of Engineering.*
+      <div>
+        <h3 class="font-bold">lifeafterbtech</h3>
+        <p class="text-sm text-gray-600">Product Analyst · Nov 2016 – Jan 2017 · Hyderabad, India</p>
+      </div>
 
----
+      <div>
+        <h3 class="font-bold">CabMe</h3>
+        <p class="text-sm text-gray-600">Intern · Jan 2016 – Apr 2016 · Hyderabad, India</p>
+      </div>
+    </div>
+  </section>
 
-## 🧩 Experience
+  <!-- Skills -->
+  <section class="max-w-4xl mx-auto p-6">
+    <h2 class="text-2xl font-semibold text-blue-700 mb-4">Top Skills</h2>
+    <ul class="list-disc list-inside space-y-1">
+      <li>Generative AI Tools</li>
+      <li>Large Language Models (LLM)</li>
+      <li>Cybersecurity</li>
+    </ul>
+  </section>
 
-**Capgemini**  
-- Senior Consultant (Oct 2024 – Present)  
-- Software Development Consultant (Nov 2021 – Dec 2024)  
-📍 Hyderabad, India
+  <!-- Certifications -->
+  <section class="max-w-4xl mx-auto p-6">
+    <h2 class="text-2xl font-semibold text-blue-700 mb-4">Certifications</h2>
+    <ul class="list-disc list-inside space-y-1">
+      <li>Foundations of Cybersecurity</li>
+      <li>Spring Boot with Embedded Database</li>
+      <li>Front-End JavaScript Frameworks: Angular</li>
+      <li>Jenkins: Automating Your Delivery Pipeline</li>
+      <li>Introduction to Front-End Development</li>
+    </ul>
+  </section>
 
-**Ellipsoids** — Data Scientist (Jul 2019 – Feb 2023)  
-**Es Magico Experiences** — MERN Stack Developer (Jul 2021 – Oct 2021)  
-**StatsFlip** — Software Developer (Nov 2017 – Apr 2019)  
-**lifeafterbtech** — Product Analyst (Nov 2016 – Jan 2017)  
-**CabMe** — Internship (Jan 2016 – Apr 2016)
+  <!-- Education -->
+  <section class="max-w-4xl mx-auto p-6">
+    <h2 class="text-2xl font-semibold text-blue-700 mb-4">Education</h2>
+    <div class="space-y-2">
+      <p><strong>AVN Institute of Engineering</strong> — Bachelor's in Mechanical Engineering (2013–2017)</p>
+      <p><strong>Narayana Junior College</strong> — Intermediate, MPC (2011–2013)</p>
+      <p><strong>Expert Model High School</strong> — High School (2001–2011)</p>
+    </div>
+  </section>
 
----
-
-## 🧠 Top Skills
-
-- Generative AI Tools  
-- Large Language Models (LLM)  
-- Cybersecurity  
-
----
-
-## 🏅 Certifications
-
-- Foundations of Cybersecurity  
-- Spring Boot with Embedded Database  
-- Front-End JavaScript Frameworks: Angular  
-- Jenkins: Automating Your Delivery Pipeline  
-- Introduction to Front-End Development  
-
----
-
-## 🎓 Education
-
-- **AVN Institute of Engineering** — B.E., Mechanical Engineering (2013–2017)  
-- **Narayana Junior College** — Intermediate, MPC (2011–2013)  
-- **Expert Model High School** — High School (2001–2011)  
-
----
-
-## 🔗 Connect with Me
-
-- 🌍 [Portfolio Website](https://abhisheknarsing.github.io)
-- 💼 [LinkedIn](https://www.linkedin.com/in/abhisheknarsing)
-- 🌐 [Personal Website](https://nabhishek.com)
-- 📍 Hyderabad, Telangana, India
-
----
-
-## ⚙️ Technologies Used
-
-- **HTML5**  
-- **Tailwind CSS**  
-- **GitHub Pages** (for hosting)
-
----
-
-## 🚀 Deployment
-
-This portfolio is deployed using **GitHub Pages**.
-
-To run locally:
-```bash
-git clone https://github.com/abhisheknarsing/abhisheknarsing.github.io
-cd abhisheknarsing.github.io
-open index.html
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-white text-center py-4 mt-10">
+    <p>© 2025 Abhishek Narsing ·</p>
+  </footer>
+</body>
+</html>
