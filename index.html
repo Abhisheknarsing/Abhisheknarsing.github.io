@@ -383,6 +383,28 @@
       background: rgba(129, 140, 248, 0.2);
       color: white;
     }
+    
+    /* Typing effect styles */
+    .typing-text {
+      overflow: hidden;
+      border-right: .15em solid orange;
+      white-space: nowrap;
+      margin: 0 auto;
+      letter-spacing: .15em;
+      animation: 
+        typing 3.5s steps(30, end),
+        blink-caret .75s step-end infinite;
+    }
+    
+    @keyframes typing {
+      from { width: 0 }
+      to { width: 100% }
+    }
+    
+    @keyframes blink-caret {
+      from, to { border-color: transparent }
+      50% { border-color: orange; }
+    }
   </style>
 </head>
 <body class="bg-gray-50" style="background-image: radial-gradient(#d1d5db 1px, transparent 1px); background-size: 20px 20px;">
@@ -447,18 +469,7 @@
     </div>
     
     <div class="pt-4 border-t border-gray-200 space-y-3">
-      <a href="resume.pdf" download class="flex items-center text-sm text-gray-600 hover:text-black transition w-full">
-        <i class="fas fa-download w-4"></i>
-        <span class="ml-2">Download Resume</span>
-      </a>
-      <a href="mailto:abhisheknarsing819@gmail.com" class="flex items-center text-sm text-gray-600 hover:text-black transition">
-        <i class="fas fa-envelope w-4"></i>
-        <span class="ml-2">Email</span>
-      </a>
-      <a href="tel:+919346202314" class="flex items-center text-sm text-gray-600 hover:text-black transition">
-        <i class="fas fa-phone w-4"></i>
-        <span class="ml-2">+91 9346202314</span>
-      </a>
+      
     </div>
     
     <div class="pt-4 flex items-center">
@@ -485,18 +496,21 @@
         <div class="fade-in" style="animation-delay: 0.2s;">
           <p class="text-gray-500 text-lg mb-4">Hello, I'm</p>
           <h1 class="text-6xl md:text-8xl font-bold text-gray-900 mb-6 leading-tight">
-            Narsing<br/>Abhishek
+            Narsing Abhishek
           </h1>
           <p class="text-2xl md:text-3xl text-gray-600 mb-8 font-light">
             Senior Software Developer specializing in<br/>
-            <span class="gradient-text font-semibold">Full Stack & GenAI Solutions</span>
+            <span class="gradient-text font-semibold typing-text">Full Stack & GenAI Solutions</span>
           </p>
           <div class="flex gap-4">
-            <a href="#contact" class="px-8 py-4 bg-black text-white rounded-full hover:bg-gray-800 transition">
+            <a href="#contact" class="px-6 py-3 bg-black text-white rounded-full hover:bg-gray-800 transition text-sm">
               Get in Touch
             </a>
-            <a href="#projects" class="px-8 py-4 border-2 border-black text-black rounded-full hover:bg-black hover:text-white transition">
+            <a href="#projects" class="px-6 py-3 border-2 border-black text-black rounded-full hover:bg-black hover:text-white transition text-sm">
               View Work
+            </a>
+            <a href="resume.pdf" download class="px-6 py-3 border-2 border-black text-black rounded-full hover:bg-black hover:text-white transition text-sm">
+              Download Resume
             </a>
           </div>
         </div>
@@ -1019,7 +1033,6 @@
         </div>
         
         <div class="mt-12 pt-8 border-t border-gray-200 text-center text-gray-500 text-sm">
-          <p>&copy; 2025 Narsing Abhishek. All rights reserved.</p>
           <p class="mt-2">Designed and built with passion for technology</p>
         </div>
       </div>
@@ -1181,6 +1194,16 @@
           this.classList.remove('pulse-animation');
         });
       });
+      
+      // Initialize typing effect
+      const typingText = document.querySelector('.typing-text');
+      if (typingText) {
+        // Reset animation
+        typingText.style.animation = 'none';
+        setTimeout(() => {
+          typingText.style.animation = '';
+        }, 10);
+      }
       
       // Hide preloader when page is loaded
       const preloader = document.getElementById('preloader');
