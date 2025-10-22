@@ -8,12 +8,57 @@ if (initialTheme === 'dark') {
   document.getElementById('themeToggle').innerHTML = '<i class="fas fa-sun"></i>';
 }
 
-// Mobile menu toggle
-const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-const sidebar = document.getElementById('sidebar');
+// Initialize mobile menu
+document.addEventListener('DOMContentLoaded', function() {
+  const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+  const sidebar = document.getElementById('sidebar');
+  const overlay = document.getElementById('overlay');
+  
+  // Ensure sidebar is closed on page load for mobile
+  if (sidebar && overlay && window.innerWidth <= 1024) {
+    sidebar.classList.remove('mobile-open');
+    overlay.classList.remove('active');
+  }
+  
+  if (mobileMenuBtn && sidebar && overlay) {
+    mobileMenuBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      sidebar.classList.toggle('mobile-open');
+      overlay.classList.toggle('active');
+    });
 
-mobileMenuBtn.addEventListener('click', () => {
-  sidebar.classList.toggle('mobile-open');
+    // Close mobile menu when clicking on overlay
+    overlay.addEventListener('click', (e) => {
+      e.stopPropagation();
+      sidebar.classList.remove('mobile-open');
+      overlay.classList.remove('active');
+    });
+
+    // Close mobile menu when clicking on nav links
+    const navLinks = document.querySelectorAll('.nav-link');
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        sidebar.classList.remove('mobile-open');
+        overlay.classList.remove('active');
+      });
+    });
+
+    // Close mobile menu when resizing to desktop
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 1024) {
+        sidebar.classList.remove('mobile-open');
+        overlay.classList.remove('active');
+      }
+    });
+
+    // Close mobile menu when pressing Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && sidebar.classList.contains('mobile-open')) {
+        sidebar.classList.remove('mobile-open');
+        overlay.classList.remove('active');
+      }
+    });
+  }
 });
 
 // Theme toggle
@@ -38,15 +83,13 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     
     const target = document.querySelector(this.getAttribute('href'));
     if (target) {
+      // For mobile devices, we might want instant scroll instead of smooth
+      const behavior = window.innerWidth <= 1024 ? 'auto' : 'smooth';
+      
       window.scrollTo({
         top: target.offsetTop,
-        behavior: 'smooth'
+        behavior: behavior
       });
-      
-      // Close mobile menu if open
-      if (sidebar.classList.contains('mobile-open')) {
-        sidebar.classList.remove('mobile-open');
-      }
       
       // Update active nav link
       document.querySelectorAll('.nav-link').forEach(link => {
