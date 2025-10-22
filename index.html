@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Narsing Abhishek - Senior Software Developer with 5.9+ years of experience in Java, Python, Spring Boot, AWS, and GenAI applications.">
   <title>Narsing Abhishek | Senior Software Developer</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -143,9 +144,248 @@
         transform: translateX(0);
       }
     }
+    
+    /* Additional animations */
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+    
+    .pulse-animation {
+      animation: pulse 2s infinite;
+    }
+    
+    /* Custom scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    
+    ::-webkit-scrollbar-track {
+      background: #f1f1f1;
+    }
+    
+    ::-webkit-scrollbar-thumb {
+      background: #888;
+      border-radius: 4px;
+    }
+    
+    ::-webkit-scrollbar-thumb:hover {
+      background: #555;
+    }
+    
+    /* Dark mode styles */
+    .dark-mode {
+      --bg-color: #0f172a;
+      --text-color: #f1f5f9;
+      --card-bg: rgba(30, 41, 59, 0.7);
+      --border-color: rgba(255, 255, 255, 0.1);
+      --sidebar-bg: rgba(15, 23, 42, 0.8);
+    }
+    
+    .dark-mode body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      background-image: radial-gradient(var(--border-color) 1px, transparent 1px);
+    }
+    
+    .dark-mode .sidebar {
+      background: var(--sidebar-bg);
+      border-right: 1px solid var(--border-color);
+    }
+    
+    .dark-mode .tech-card {
+      background: var(--card-bg);
+      color: var(--text-color);
+    }
+    
+    .dark-mode .nav-link {
+      color: #cbd5e1;
+    }
+    
+    .dark-mode .nav-link:hover, 
+    .dark-mode .nav-link.active {
+      color: white;
+    }
+    
+    .dark-mode .gradient-text {
+      background: linear-gradient(135deg, #818cf8 0%, #c084fc 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .dark-mode .logo-container {
+      background: #1e293b;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+    
+    .dark-mode .timeline-item {
+      border-left: 2px solid var(--border-color);
+    }
+    
+    .dark-mode .timeline-item::before {
+      background: white;
+    }
+    
+    .dark-mode .tech-card:hover {
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    }
+    
+    .dark-mode input, 
+    .dark-mode textarea {
+      background: var(--card-bg);
+      color: var(--text-color);
+      border: 1px solid var(--border-color);
+    }
+    
+    .dark-mode input:focus, 
+    .dark-mode textarea:focus {
+      border-color: #818cf8;
+      box-shadow: 0 0 0 3px rgba(129, 140, 248, 0.3);
+    }
+    
+    .dark-mode .border-t {
+      border-top: 1px solid var(--border-color) !important;
+    }
+    
+    .dark-mode .bg-gray-50 {
+      background-color: #1e293b !important;
+    }
+    
+    .dark-mode .bg-white {
+      background-color: var(--bg-color) !important;
+    }
+    
+    .dark-mode .text-gray-900 {
+      color: var(--text-color) !important;
+    }
+    
+    .dark-mode .text-gray-700,
+    .dark-mode .text-gray-600,
+    .dark-mode .text-gray-500 {
+      color: #cbd5e1 !important;
+    }
+    
+    /* Enhanced sidebar styles */
+    .sidebar {
+      backdrop-filter: blur(20px);
+      background: rgba(255, 255, 255, 0.85);
+      border-right: 1px solid rgba(0, 0, 0, 0.05);
+      box-shadow: 2px 0 10px rgba(0, 0, 0, 0.05);
+      transition: all 0.3s ease;
+    }
+    
+    .sidebar-header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      margin-bottom: 2rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    }
+    
+    .profile-img {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      margin-bottom: 1rem;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .profile-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    
+    .social-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0, 0, 0, 0.05);
+      color: #333;
+      transition: all 0.3s ease;
+    }
+    
+    .social-icon:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    
+    .dark-mode .social-icon {
+      background: rgba(255, 255, 255, 0.1);
+      color: #cbd5e1;
+    }
+    
+    .dark-mode .social-icon:hover {
+      background: rgba(129, 140, 248, 0.2);
+      color: white;
+    }
+    
+    .nav-link {
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      border-radius: 0.75rem;
+      margin-bottom: 0.25rem;
+    }
+    
+    .nav-link:hover, .nav-link.active {
+      background: rgba(0, 0, 0, 0.03);
+      color: black;
+    }
+    
+    .dark-mode .nav-link:hover, 
+    .dark-mode .nav-link.active {
+      background: rgba(129, 140, 248, 0.15);
+      color: white;
+    }
+    
+    .theme-toggle {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(0, 0, 0, 0.05);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-left: auto;
+    }
+    
+    .theme-toggle:hover {
+      background: rgba(0, 0, 0, 0.1);
+      transform: rotate(15deg);
+    }
+    
+    .dark-mode .theme-toggle {
+      background: rgba(255, 255, 255, 0.1);
+      color: #cbd5e1;
+    }
+    
+    .dark-mode .theme-toggle:hover {
+      background: rgba(129, 140, 248, 0.2);
+      color: white;
+    }
   </style>
 </head>
-<body class="bg-gray-50">
+<body class="bg-gray-50" style="background-image: radial-gradient(#d1d5db 1px, transparent 1px); background-size: 20px 20px;">
   
   <!-- Mobile Menu Button -->
   <button id="mobileMenuBtn" class="lg:hidden fixed top-6 left-6 z-50 w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center">
@@ -153,43 +393,64 @@
   </button>
   
   <!-- Sidebar -->
-  <aside id="sidebar" class="sidebar fixed left-0 top-0 h-screen w-64 z-40 flex flex-col py-8 px-6">
-    <div class="mb-12">
-      <div class="w-20 h-20 bg-gradient-to-br from-gray-900 to-gray-700 rounded-2xl flex items-center justify-center mb-4 shadow-xl">
-        <span class="text-white text-3xl font-bold">NA</span>
+  <aside id="sidebar" class="sidebar fixed left-0 top-0 h-screen w-64 z-40 flex flex-col py-6 px-4">
+    <div class="sidebar-header">
+      <div class="profile-img">
+        <img src="photo.jpeg" alt="Narsing Abhishek" class="w-full h-full object-cover rounded-full">
       </div>
       <h2 class="text-xl font-semibold text-gray-900">Narsing Abhishek</h2>
       <p class="text-sm text-gray-500 mt-1">Senior Software Developer</p>
+      
+      <div class="social-links">
+        <a href="#" class="social-icon">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+        <a href="#" class="social-icon">
+          <i class="fab fa-github"></i>
+        </a>
+        <a href="#" class="social-icon">
+          <i class="fab fa-twitter"></i>
+        </a>
+        <a href="#" class="social-icon">
+          <i class="fab fa-instagram"></i>
+        </a>
+      </div>
     </div>
     
-    <nav class="flex-1 space-y-2">
-      <a href="#home" class="nav-link active flex items-center px-4 py-3 text-gray-700 hover:text-black rounded-lg">
-        <i class="fas fa-home w-5"></i>
-        <span class="ml-3">Home</span>
-      </a>
-      <a href="#about" class="nav-link flex items-center px-4 py-3 text-gray-700 hover:text-black rounded-lg">
-        <i class="fas fa-user w-5"></i>
-        <span class="ml-3">About</span>
-      </a>
-      <a href="#skills" class="nav-link flex items-center px-4 py-3 text-gray-700 hover:text-black rounded-lg">
-        <i class="fas fa-code w-5"></i>
-        <span class="ml-3">Skills</span>
-      </a>
-      <a href="#experience" class="nav-link flex items-center px-4 py-3 text-gray-700 hover:text-black rounded-lg">
-        <i class="fas fa-briefcase w-5"></i>
-        <span class="ml-3">Experience</span>
-      </a>
-      <a href="#projects" class="nav-link flex items-center px-4 py-3 text-gray-700 hover:text-black rounded-lg">
-        <i class="fas fa-folder w-5"></i>
-        <span class="ml-3">Projects</span>
-      </a>
-      <a href="#contact" class="nav-link flex items-center px-4 py-3 text-gray-700 hover:text-black rounded-lg">
-        <i class="fas fa-envelope w-5"></i>
-        <span class="ml-3">Contact</span>
-      </a>
-    </nav>
+    <div class="sidebar-content">
+      <nav class="flex-1 space-y-1">
+        <a href="#home" class="nav-link active flex items-center px-4 py-3 text-gray-700 hover:text-black rounded-lg">
+          <i class="fas fa-home w-5"></i>
+          <span class="ml-3">Home</span>
+        </a>
+        <a href="#about" class="nav-link flex items-center px-4 py-3 text-gray-700 hover:text-black rounded-lg">
+          <i class="fas fa-user w-5"></i>
+          <span class="ml-3">About</span>
+        </a>
+        <a href="#skills" class="nav-link flex items-center px-4 py-3 text-gray-700 hover:text-black rounded-lg">
+          <i class="fas fa-code w-5"></i>
+          <span class="ml-3">Skills</span>
+        </a>
+        <a href="#experience" class="nav-link flex items-center px-4 py-3 text-gray-700 hover:text-black rounded-lg">
+          <i class="fas fa-briefcase w-5"></i>
+          <span class="ml-3">Experience</span>
+        </a>
+        <a href="#projects" class="nav-link flex items-center px-4 py-3 text-gray-700 hover:text-black rounded-lg">
+          <i class="fas fa-folder w-5"></i>
+          <span class="ml-3">Projects</span>
+        </a>
+        <a href="#contact" class="nav-link flex items-center px-4 py-3 text-gray-700 hover:text-black rounded-lg">
+          <i class="fas fa-envelope w-5"></i>
+          <span class="ml-3">Contact</span>
+        </a>
+      </nav>
+    </div>
     
-    <div class="pt-6 border-t border-gray-200 space-y-3">
+    <div class="pt-4 border-t border-gray-200 space-y-3">
+      <a href="resume.pdf" download class="flex items-center text-sm text-gray-600 hover:text-black transition w-full">
+        <i class="fas fa-download w-4"></i>
+        <span class="ml-2">Download Resume</span>
+      </a>
       <a href="mailto:abhisheknarsing819@gmail.com" class="flex items-center text-sm text-gray-600 hover:text-black transition">
         <i class="fas fa-envelope w-4"></i>
         <span class="ml-2">Email</span>
@@ -199,7 +460,21 @@
         <span class="ml-2">+91 9346202314</span>
       </a>
     </div>
+    
+    <div class="pt-4 flex items-center">
+      <div class="theme-toggle" id="themeToggle">
+        <i class="fas fa-moon"></i>
+      </div>
+    </div>
   </aside>
+  
+  <!-- Preloader -->
+  <div id="preloader" class="fixed inset-0 bg-white z-50 flex items-center justify-center">
+    <div class="flex flex-col items-center">
+      <div class="w-16 h-16 border-4 border-gray-300 border-t-black rounded-full animate-spin mb-4"></div>
+      <p class="text-gray-600">Loading portfolio...</p>
+    </div>
+  </div>
   
   <!-- Main Content -->
   <main class="lg:ml-64 min-h-screen">
@@ -243,6 +518,31 @@
             <p class="text-lg">
               Currently working as a <strong>Senior Consultant at Capgemini</strong>, I'm passionate about leveraging AI and cloud technologies to solve complex business challenges.
             </p>
+            <div class="mt-8 p-6 bg-gradient-to-r from-gray-50 to-gray-100 rounded-2xl border border-gray-200">
+              <h3 class="text-xl font-semibold text-gray-900 mb-4">Professional Summary</h3>
+              <ul class="space-y-3 text-gray-700">
+                <li class="flex items-start">
+                  <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                  <span>Over 5.9 years of experience in software development, working on Web & Enterprise applications using Java and J2EE Technologies</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                  <span>Developed and maintained Enterprise GenAI application using OpenAI and Anthropic API</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                  <span>Experience in both Waterfall methodology and Agile methodology</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                  <span>Good working experience on AWS Cloud and Firebase</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                  <span>Experience in client-side technologies such as JavaScript, JSON, jQuery</span>
+                </li>
+              </ul>
+            </div>
           </div>
           <div class="grid grid-cols-2 gap-6">
             <div class="tech-card p-6 rounded-2xl">
@@ -535,7 +835,7 @@
         
         <div class="grid md:grid-cols-2 gap-8">
           <!-- Project 1 -->
-          <div class="tech-card p-8 rounded-2xl">
+          <div class="tech-card p-8 rounded-2xl hover:shadow-xl transition-all duration-300">
             <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-xl mb-4 flex items-center justify-center">
               <i class="fas fa-microchip text-white text-xl"></i>
             </div>
@@ -545,11 +845,17 @@
               <span class="bg-gray-100 px-3 py-1 rounded-full text-xs">Spring Boot</span>
               <span class="bg-gray-100 px-3 py-1 rounded-full text-xs">AWS</span>
               <span class="bg-gray-100 px-3 py-1 rounded-full text-xs">Microservices</span>
+              <span class="bg-gray-100 px-3 py-1 rounded-full text-xs">Hibernate</span>
+            </div>
+            <div class="flex flex-wrap gap-2">
+              <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-blue-100 text-blue-800">
+                <i class="fas fa-code-branch mr-1"></i> Enterprise
+              </span>
             </div>
           </div>
           
           <!-- Project 2 -->
-          <div class="tech-card p-8 rounded-2xl">
+          <div class="tech-card p-8 rounded-2xl hover:shadow-xl transition-all duration-300">
             <div class="w-12 h-12 bg-gradient-to-br from-green-500 to-teal-600 rounded-xl mb-4 flex items-center justify-center">
               <i class="fas fa-hotel text-white text-xl"></i>
             </div>
@@ -559,11 +865,18 @@
               <span class="bg-gray-100 px-3 py-1 rounded-full text-xs">Java</span>
               <span class="bg-gray-100 px-3 py-1 rounded-full text-xs">Jenkins</span>
               <span class="bg-gray-100 px-3 py-1 rounded-full text-xs">MuleSoft</span>
+              <span class="bg-gray-100 px-3 py-1 rounded-full text-xs">Postman</span>
+              <span class="bg-gray-100 px-3 py-1 rounded-full text-xs">Jira</span>
+            </div>
+            <div class="flex flex-wrap gap-2">
+              <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-green-100 text-green-800">
+                <i class="fas fa-database mr-1"></i> Data Processing
+              </span>
             </div>
           </div>
           
           <!-- Project 3 -->
-          <div class="tech-card p-8 rounded-2xl">
+          <div class="tech-card p-8 rounded-2xl hover:shadow-xl transition-all duration-300">
             <div class="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-600 rounded-xl mb-4 flex items-center justify-center">
               <i class="fas fa-database text-white text-xl"></i>
             </div>
@@ -573,6 +886,13 @@
               <span class="bg-gray-100 px-3 py-1 rounded-full text-xs">Spring Boot</span>
               <span class="bg-gray-100 px-3 py-1 rounded-full text-xs">Jenkins</span>
               <span class="bg-gray-100 px-3 py-1 rounded-full text-xs">API Development</span>
+              <span class="bg-gray-100 px-3 py-1 rounded-full text-xs">Postman</span>
+              <span class="bg-gray-100 px-3 py-1 rounded-full text-xs">Jira</span>
+            </div>
+            <div class="flex flex-wrap gap-2">
+              <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-purple-100 text-purple-800">
+                <i class="fas fa-server mr-1"></i> Microservices
+              </span>
             </div>
           </div>
         </div>
@@ -635,30 +955,33 @@
           </div>
           
           <div class="tech-card p-8 rounded-2xl">
-            <form class="space-y-6">
+            <form id="contactForm" class="space-y-6">
               <div>
-                <label for="name" class="block text-sm font-medium text-gray-700 mb-2">Name</label>
-                <input type="text" id="name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-black focus:border-transparent" placeholder="Your name">
+                <label for="name" class="block text-sm font-medium text-gray-700 mb-2">Name <span class="text-red-500">*</span></label>
+                <input type="text" id="name" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-black focus:border-transparent" placeholder="Your name">
               </div>
               
               <div>
-                <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email</label>
-                <input type="email" id="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-black focus:border-transparent" placeholder="your.email@example.com">
+                <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email <span class="text-red-500">*</span></label>
+                <input type="email" id="email" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-black focus:border-transparent" placeholder="your.email@example.com">
               </div>
               
               <div>
-                <label for="subject" class="block text-sm font-medium text-gray-700 mb-2">Subject</label>
-                <input type="text" id="subject" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-black focus:border-transparent" placeholder="Subject">
+                <label for="subject" class="block text-sm font-medium text-gray-700 mb-2">Subject <span class="text-red-500">*</span></label>
+                <input type="text" id="subject" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-black focus:border-transparent" placeholder="Subject">
               </div>
               
               <div>
-                <label for="message" class="block text-sm font-medium text-gray-700 mb-2">Message</label>
-                <textarea id="message" rows="5" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-black focus:border-transparent" placeholder="Your message here..."></textarea>
+                <label for="message" class="block text-sm font-medium text-gray-700 mb-2">Message <span class="text-red-500">*</span></label>
+                <textarea id="message" rows="5" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-black focus:border-transparent" placeholder="Your message here..."></textarea>
               </div>
               
-              <button type="submit" class="w-full px-6 py-4 bg-black text-white rounded-lg hover:bg-gray-800 transition font-medium">
-                Send Message
+              <button type="submit" class="w-full px-6 py-4 bg-black text-white rounded-lg hover:bg-gray-800 transition font-medium flex items-center justify-center">
+                <span>Send Message</span>
+                <i class="fas fa-paper-plane ml-2"></i>
               </button>
+              
+              <div id="formMessage" class="hidden p-4 rounded-lg"></div>
             </form>
           </div>
         </div>
@@ -704,12 +1027,37 @@
   </main>
   
   <script>
+    // Check for saved theme preference or respect OS preference
+    const savedTheme = localStorage.getItem('theme');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const initialTheme = savedTheme || (prefersDark ? 'dark' : 'light');
+    
+    if (initialTheme === 'dark') {
+      document.documentElement.classList.add('dark-mode');
+      document.getElementById('themeToggle').innerHTML = '<i class="fas fa-sun"></i>';
+    }
+    
     // Mobile menu toggle
     const mobileMenuBtn = document.getElementById('mobileMenuBtn');
     const sidebar = document.getElementById('sidebar');
     
     mobileMenuBtn.addEventListener('click', () => {
       sidebar.classList.toggle('mobile-open');
+    });
+    
+    // Theme toggle
+    const themeToggle = document.getElementById('themeToggle');
+    themeToggle.addEventListener('click', () => {
+      document.documentElement.classList.toggle('dark-mode');
+      
+      // Update icon
+      if (document.documentElement.classList.contains('dark-mode')) {
+        themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+        localStorage.setItem('theme', 'dark');
+      } else {
+        themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+        localStorage.setItem('theme', 'light');
+      }
     });
     
     // Smooth scrolling for anchor links
@@ -775,6 +1123,75 @@
     // Trigger scroll events on load
     window.addEventListener('load', () => {
       window.dispatchEvent(new Event('scroll'));
+    });
+    
+    // Contact form validation and submission
+    const contactForm = document.getElementById('contactForm');
+    if (contactForm) {
+      contactForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const formMessage = document.getElementById('formMessage');
+        const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
+        const subject = document.getElementById('subject').value;
+        const message = document.getElementById('message').value;
+        
+        // Simple validation
+        if (!name || !email || !subject || !message) {
+          formMessage.textContent = 'Please fill in all required fields.';
+          formMessage.className = 'p-4 rounded-lg bg-red-100 text-red-700';
+          formMessage.classList.remove('hidden');
+          return;
+        }
+        
+        // Email validation
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+          formMessage.textContent = 'Please enter a valid email address.';
+          formMessage.className = 'p-4 rounded-lg bg-red-100 text-red-700';
+          formMessage.classList.remove('hidden');
+          return;
+        }
+        
+        // Success message (in a real application, you would send the form data to a server)
+        formMessage.textContent = 'Thank you for your message! I will get back to you soon.';
+        formMessage.className = 'p-4 rounded-lg bg-green-100 text-green-700';
+        formMessage.classList.remove('hidden');
+        
+        // Reset form
+        contactForm.reset();
+        
+        // Hide message after 5 seconds
+        setTimeout(() => {
+          formMessage.classList.add('hidden');
+        }, 5000);
+      });
+    }
+    
+    // Add animation to hero section buttons on hover
+    document.addEventListener('DOMContentLoaded', function() {
+      const heroButtons = document.querySelectorAll('#home .flex a');
+      heroButtons.forEach(button => {
+        button.addEventListener('mouseenter', function() {
+          this.classList.add('pulse-animation');
+        });
+        
+        button.addEventListener('mouseleave', function() {
+          this.classList.remove('pulse-animation');
+        });
+      });
+      
+      // Hide preloader when page is loaded
+      const preloader = document.getElementById('preloader');
+      if (preloader) {
+        setTimeout(() => {
+          preloader.style.opacity = '0';
+          setTimeout(() => {
+            preloader.style.display = 'none';
+          }, 300);
+        }, 500);
+      }
     });
   </script>
 </body>
