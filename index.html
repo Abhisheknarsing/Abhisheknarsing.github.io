@@ -3,103 +3,402 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Abhishek Narsing | Full Stack Developer</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.4.4/dist/tailwind.min.css" rel="stylesheet">
+  <title>Narsing Abhishek | Senior Software Developer</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .animate-fade-in-up {
+      animation: fadeInUp 0.6s ease-out;
+    }
+    .skill-badge {
+      transition: all 0.3s ease;
+    }
+    .skill-badge:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+    .section-card {
+      transition: all 0.3s ease;
+    }
+    .section-card:hover {
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    }
+  </style>
 </head>
-<body class="bg-gray-50 text-gray-800 font-sans">
-  <!-- Header -->
-  <header class="bg-blue-600 text-white py-10 text-center">
-    <h1 class="text-4xl font-bold">Abhishek Narsing</h1>
-    <p class="text-lg mt-2">Full Stack Developer · Hyderabad, Telangana, India</p>
-    <div class="flex justify-center space-x-6 mt-4">
-      <a href="https://www.linkedin.com/in/abhisheknarsing" target="_blank" class="hover:underline">LinkedIn</a>
-      <a href="https://nabhishek.com" target="_blank" class="hover:underline">Personal Website</a>
-      <a href="mailto:contact@nabhishek.com" class="hover:underline">Contact</a>
+<body class="bg-gradient-to-br from-gray-50 to-gray-100 text-gray-800 font-sans">
+  
+  <!-- Header/Hero Section -->
+  <header class="bg-gradient-to-r from-blue-600 via-blue-700 to-indigo-700 text-white py-16">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="text-center animate-fade-in-up">
+        <h1 class="text-5xl md:text-6xl font-bold mb-3">NARSING ABHISHEK</h1>
+        <p class="text-xl md:text-2xl mb-4 text-blue-100">Senior Software Developer & Full Stack Engineer</p>
+        <p class="text-lg text-blue-50 mb-6">5.9+ Years of Experience in Java, Python, Spring Boot & GenAI</p>
+        
+        <!-- Contact Info -->
+        <div class="flex flex-wrap justify-center items-center gap-6 mt-6 text-sm md:text-base">
+          <a href="mailto:abhisheknarsing819@gmail.com" class="flex items-center gap-2 hover:text-blue-200 transition">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path>
+              <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path>
+            </svg>
+            abhisheknarsing819@gmail.com
+          </a>
+          <a href="tel:+919346202314" class="flex items-center gap-2 hover:text-blue-200 transition">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"></path>
+            </svg>
+            +91 9346202314
+          </a>
+          <span class="flex items-center gap-2">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path>
+            </svg>
+            India
+          </span>
+        </div>
+      </div>
     </div>
   </header>
 
-  <!-- Summary -->
-  <section class="max-w-4xl mx-auto p-6">
-    <h2 class="text-2xl font-semibold text-blue-700 mb-4">Summaryy</h2>
-    <p>
-      Developer with a demonstrated history of working in the software industry. Skilled in JavaScript, MERN Stack, Python, Machine Learning,
-      Deep Learning, SEO, Spring Boot, PHP, CodeIgniter, and Android Development. Strong engineering professional with a Bachelor's degree focused
-      in Mechanical Engineering from AVN Institute of Engineering.
-    </p>
-  </section>
-
-  <!-- Experience -->
-  <section class="max-w-4xl mx-auto p-6">
-    <h2 class="text-2xl font-semibold text-blue-700 mb-4">Experience</h2>
-    <div class="space-y-4">
-      <div>
-        <h3 class="font-bold">Capgemini</h3>
-        <p class="text-sm text-gray-600">Senior Consultant · Oct 2024 – Present · Hyderabad, India</p>
-        <p class="text-sm text-gray-600">Software Development Consultant · Nov 2021 – Dec 2024 · Hyderabad, India</p>
-      </div>
-
-      <div>
-        <h3 class="font-bold">Ellipsoids</h3>
-        <p class="text-sm text-gray-600">Data Scientist · Jul 2019 – Feb 2023 · Hyderabad, India</p>
-      </div>
-
-      <div>
-        <h3 class="font-bold">Es Magico Experiences</h3>
-        <p class="text-sm text-gray-600">MERN Stack Developer · Jul 2021 – Oct 2021 · India</p>
-      </div>
-
-      <div>
-        <h3 class="font-bold">StatsFlip</h3>
-        <p class="text-sm text-gray-600">Software Developer · Nov 2017 – Apr 2019 · India</p>
-      </div>
-
-      <div>
-        <h3 class="font-bold">lifeafterbtech</h3>
-        <p class="text-sm text-gray-600">Product Analyst · Nov 2016 – Jan 2017 · Hyderabad, India</p>
-      </div>
-
-      <div>
-        <h3 class="font-bold">CabMe</h3>
-        <p class="text-sm text-gray-600">Intern · Jan 2016 – Apr 2016 · Hyderabad, India</p>
+  <!-- Professional Summary -->
+  <section class="max-w-6xl mx-auto px-6 py-12 animate-fade-in-up">
+    <div class="bg-white rounded-xl shadow-lg p-8 section-card">
+      <h2 class="text-3xl font-bold text-gray-800 mb-6 border-b-4 border-blue-600 inline-block pb-2">Professional Summary</h2>
+      <div class="text-gray-700 leading-relaxed space-y-3">
+        <p>• Over <strong>5.9 years</strong> of experience in software development, working on Web & Enterprise applications using <strong>Java and J2EE Technologies</strong>.</p>
+        <p>• Expertise in <strong>Backend Application development</strong> and Frontend Application development for Sales systems.</p>
+        <p>• Proficient in <strong>Python Full Stack Development</strong> using Django, Flask, and experienced in <strong>Machine Learning & Deep Learning</strong> operations using Scikit Learn, TensorFlow on various datasets, and image processing using OpenCV.</p>
+        <p>• Developed and maintained <strong>Enterprise GenAI applications</strong> using OpenAI and Anthropic API.</p>
+        <p>• Strong experience with <strong>Vector databases and Embeddings</strong> on Chroma DB and Lang Chain.</p>
+        <p>• Proficient in <strong>Spring Boot, MVC, JPA</strong>, and web services (SOAP & REST).</p>
+        <p>• Experience in both <strong>Waterfall and Agile methodologies</strong>, with expertise in planning, coordinating, and executing project activities.</p>
+        <p>• Skilled in <strong>DevOps tools</strong> including GIT, Maven, Jenkins, and CI/CD pipelines.</p>
+        <p>• Strong debugging experience using Slf4j and Log4j, and integration testing using JUnit and Mockito.</p>
+        <p>• Good working experience with <strong>AWS Cloud services</strong> and microservices architecture.</p>
       </div>
     </div>
   </section>
 
-  <!-- Skills -->
-  <section class="max-w-4xl mx-auto p-6">
-    <h2 class="text-2xl font-semibold text-blue-700 mb-4">Top Skills</h2>
-    <ul class="list-disc list-inside space-y-1">
-      <li>Generative AI Tools</li>
-      <li>Large Language Models (LLM)</li>
-      <li>Cybersecurity</li>
-    </ul>
+  <!-- Technical Skills -->
+  <section class="max-w-6xl mx-auto px-6 py-12">
+    <div class="bg-white rounded-xl shadow-lg p-8 section-card">
+      <h2 class="text-3xl font-bold text-gray-800 mb-8 border-b-4 border-blue-600 inline-block pb-2">Technical Skills</h2>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Backend -->
+        <div>
+          <h3 class="text-xl font-semibold text-blue-700 mb-3 flex items-center">
+            <span class="w-2 h-8 bg-blue-600 mr-3"></span>
+            Backend Technologies
+          </h3>
+          <div class="flex flex-wrap gap-2">
+            <span class="skill-badge bg-blue-100 text-blue-800 px-4 py-2 rounded-full text-sm font-medium">Java</span>
+            <span class="skill-badge bg-blue-100 text-blue-800 px-4 py-2 rounded-full text-sm font-medium">J2EE</span>
+            <span class="skill-badge bg-blue-100 text-blue-800 px-4 py-2 rounded-full text-sm font-medium">Spring Boot</span>
+            <span class="skill-badge bg-blue-100 text-blue-800 px-4 py-2 rounded-full text-sm font-medium">Spring MVC</span>
+            <span class="skill-badge bg-blue-100 text-blue-800 px-4 py-2 rounded-full text-sm font-medium">Spring JPA</span>
+            <span class="skill-badge bg-blue-100 text-blue-800 px-4 py-2 rounded-full text-sm font-medium">Django</span>
+            <span class="skill-badge bg-blue-100 text-blue-800 px-4 py-2 rounded-full text-sm font-medium">Flask</span>
+            <span class="skill-badge bg-blue-100 text-blue-800 px-4 py-2 rounded-full text-sm font-medium">NodeJS</span>
+          </div>
+        </div>
+
+        <!-- Frontend -->
+        <div>
+          <h3 class="text-xl font-semibold text-green-700 mb-3 flex items-center">
+            <span class="w-2 h-8 bg-green-600 mr-3"></span>
+            Frontend Technologies
+          </h3>
+          <div class="flex flex-wrap gap-2">
+            <span class="skill-badge bg-green-100 text-green-800 px-4 py-2 rounded-full text-sm font-medium">HTML</span>
+            <span class="skill-badge bg-green-100 text-green-800 px-4 py-2 rounded-full text-sm font-medium">CSS</span>
+            <span class="skill-badge bg-green-100 text-green-800 px-4 py-2 rounded-full text-sm font-medium">JavaScript</span>
+            <span class="skill-badge bg-green-100 text-green-800 px-4 py-2 rounded-full text-sm font-medium">TypeScript</span>
+            <span class="skill-badge bg-green-100 text-green-800 px-4 py-2 rounded-full text-sm font-medium">jQuery</span>
+            <span class="skill-badge bg-green-100 text-green-800 px-4 py-2 rounded-full text-sm font-medium">React</span>
+            <span class="skill-badge bg-green-100 text-green-800 px-4 py-2 rounded-full text-sm font-medium">Angular</span>
+            <span class="skill-badge bg-green-100 text-green-800 px-4 py-2 rounded-full text-sm font-medium">Tailwind CSS</span>
+          </div>
+        </div>
+
+        <!-- Web Services -->
+        <div>
+          <h3 class="text-xl font-semibold text-purple-700 mb-3 flex items-center">
+            <span class="w-2 h-8 bg-purple-600 mr-3"></span>
+            Web Services & Microservices
+          </h3>
+          <div class="flex flex-wrap gap-2">
+            <span class="skill-badge bg-purple-100 text-purple-800 px-4 py-2 rounded-full text-sm font-medium">SOAP</span>
+            <span class="skill-badge bg-purple-100 text-purple-800 px-4 py-2 rounded-full text-sm font-medium">REST</span>
+            <span class="skill-badge bg-purple-100 text-purple-800 px-4 py-2 rounded-full text-sm font-medium">Spring Restful</span>
+            <span class="skill-badge bg-purple-100 text-purple-800 px-4 py-2 rounded-full text-sm font-medium">Microservices</span>
+            <span class="skill-badge bg-purple-100 text-purple-800 px-4 py-2 rounded-full text-sm font-medium">Docker</span>
+            <span class="skill-badge bg-purple-100 text-purple-800 px-4 py-2 rounded-full text-sm font-medium">Kubernetes</span>
+          </div>
+        </div>
+
+        <!-- Cloud & DevOps -->
+        <div>
+          <h3 class="text-xl font-semibold text-orange-700 mb-3 flex items-center">
+            <span class="w-2 h-8 bg-orange-600 mr-3"></span>
+            Cloud & DevOps
+          </h3>
+          <div class="flex flex-wrap gap-2">
+            <span class="skill-badge bg-orange-100 text-orange-800 px-4 py-2 rounded-full text-sm font-medium">AWS (EC2, S3, Lambda, RDS)</span>
+            <span class="skill-badge bg-orange-100 text-orange-800 px-4 py-2 rounded-full text-sm font-medium">Azure</span>
+            <span class="skill-badge bg-orange-100 text-orange-800 px-4 py-2 rounded-full text-sm font-medium">Firebase</span>
+            <span class="skill-badge bg-orange-100 text-orange-800 px-4 py-2 rounded-full text-sm font-medium">Jenkins</span>
+            <span class="skill-badge bg-orange-100 text-orange-800 px-4 py-2 rounded-full text-sm font-medium">CI/CD</span>
+            <span class="skill-badge bg-orange-100 text-orange-800 px-4 py-2 rounded-full text-sm font-medium">GIT</span>
+          </div>
+        </div>
+
+        <!-- Tools & Testing -->
+        <div>
+          <h3 class="text-xl font-semibold text-red-700 mb-3 flex items-center">
+            <span class="w-2 h-8 bg-red-600 mr-3"></span>
+            Build Tools & Testing
+          </h3>
+          <div class="flex flex-wrap gap-2">
+            <span class="skill-badge bg-red-100 text-red-800 px-4 py-2 rounded-full text-sm font-medium">Maven</span>
+            <span class="skill-badge bg-red-100 text-red-800 px-4 py-2 rounded-full text-sm font-medium">Ant</span>
+            <span class="skill-badge bg-red-100 text-red-800 px-4 py-2 rounded-full text-sm font-medium">Gradle</span>
+            <span class="skill-badge bg-red-100 text-red-800 px-4 py-2 rounded-full text-sm font-medium">JUnit</span>
+            <span class="skill-badge bg-red-100 text-red-800 px-4 py-2 rounded-full text-sm font-medium">Mockito</span>
+            <span class="skill-badge bg-red-100 text-red-800 px-4 py-2 rounded-full text-sm font-medium">SLF4J</span>
+            <span class="skill-badge bg-red-100 text-red-800 px-4 py-2 rounded-full text-sm font-medium">Log4j</span>
+          </div>
+        </div>
+
+        <!-- Servers & Methodologies -->
+        <div>
+          <h3 class="text-xl font-semibold text-indigo-700 mb-3 flex items-center">
+            <span class="w-2 h-8 bg-indigo-600 mr-3"></span>
+            Servers & Methodologies
+          </h3>
+          <div class="flex flex-wrap gap-2">
+            <span class="skill-badge bg-indigo-100 text-indigo-800 px-4 py-2 rounded-full text-sm font-medium">Tomcat</span>
+            <span class="skill-badge bg-indigo-100 text-indigo-800 px-4 py-2 rounded-full text-sm font-medium">JBoss</span>
+            <span class="skill-badge bg-indigo-100 text-indigo-800 px-4 py-2 rounded-full text-sm font-medium">WebLogic</span>
+            <span class="skill-badge bg-indigo-100 text-indigo-800 px-4 py-2 rounded-full text-sm font-medium">Waterfall</span>
+            <span class="skill-badge bg-indigo-100 text-indigo-800 px-4 py-2 rounded-full text-sm font-medium">Agile</span>
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
 
-  <!-- Certifications -->
-  <section class="max-w-4xl mx-auto p-6">
-    <h2 class="text-2xl font-semibold text-blue-700 mb-4">Certifications</h2>
-    <ul class="list-disc list-inside space-y-1">
-      <li>Foundations of Cybersecurity</li>
-      <li>Spring Boot with Embedded Database</li>
-      <li>Front-End JavaScript Frameworks: Angular</li>
-      <li>Jenkins: Automating Your Delivery Pipeline</li>
-      <li>Introduction to Front-End Development</li>
-    </ul>
+  <!-- Work Experience -->
+  <section class="max-w-6xl mx-auto px-6 py-12">
+    <div class="bg-white rounded-xl shadow-lg p-8 section-card">
+      <h2 class="text-3xl font-bold text-gray-800 mb-8 border-b-4 border-blue-600 inline-block pb-2">Work Experience</h2>
+      
+      <div class="space-y-8">
+        <!-- Capgemini -->
+        <div class="border-l-4 border-blue-600 pl-6 hover:bg-gray-50 p-4 rounded-r transition">
+          <div class="flex flex-wrap justify-between items-start mb-2">
+            <div>
+              <h3 class="text-2xl font-bold text-gray-800">Capgemini</h3>
+              <p class="text-lg text-blue-600 font-semibold">Senior Consultant</p>
+            </div>
+            <span class="bg-blue-100 text-blue-800 px-4 py-1 rounded-full text-sm font-medium">Nov 2021 - Nov 2025 (4 years)</span>
+          </div>
+          <p class="text-gray-600 mb-3"><em>Promoted from Consultant to Senior Consultant</em></p>
+          <ul class="list-disc list-inside text-gray-700 space-y-2 ml-4">
+            <li>Led development of enterprise applications using Spring Boot and microservices architecture</li>
+            <li>Developed GenAI applications using OpenAI and Anthropic API</li>
+            <li>Worked extensively with AWS Cloud services and vector databases</li>
+            <li>Collaborated with cross-functional teams in Agile environment</li>
+          </ul>
+        </div>
+
+        <!-- AVYUKTHA -->
+        <div class="border-l-4 border-green-600 pl-6 hover:bg-gray-50 p-4 rounded-r transition">
+          <div class="flex flex-wrap justify-between items-start mb-2">
+            <div>
+              <h3 class="text-2xl font-bold text-gray-800">AVYUKTHA</h3>
+              <p class="text-lg text-green-600 font-semibold">Software Developer</p>
+            </div>
+            <span class="bg-green-100 text-green-800 px-4 py-1 rounded-full text-sm font-medium">Apr 2020 - Apr 2021 (1 year)</span>
+          </div>
+          <ul class="list-disc list-inside text-gray-700 space-y-2 ml-4">
+            <li>Developed full-stack applications using Python (Django, Flask) and JavaScript frameworks</li>
+            <li>Implemented machine learning and deep learning models using TensorFlow and Scikit Learn</li>
+            <li>Worked on image processing applications using OpenCV</li>
+            <li>Participated in both development and testing phases</li>
+          </ul>
+        </div>
+
+        <!-- ELLIPSOIDS INFO SOLUTIONS -->
+        <div class="border-l-4 border-purple-600 pl-6 hover:bg-gray-50 p-4 rounded-r transition">
+          <div class="flex flex-wrap justify-between items-start mb-2">
+            <div>
+              <h3 class="text-2xl font-bold text-gray-800">ELLIPSOIDS INFO SOLUTIONS</h3>
+              <p class="text-lg text-purple-600 font-semibold">Software Engineer</p>
+            </div>
+            <span class="bg-purple-100 text-purple-800 px-4 py-1 rounded-full text-sm font-medium">Jun 2019 - Mar 2020</span>
+          </div>
+          <ul class="list-disc list-inside text-gray-700 space-y-2 ml-4">
+            <li>Developed web applications using J2EE technologies</li>
+            <li>Worked on RESTful web services and SOAP services</li>
+            <li>Participated in code reviews and quality assurance activities</li>
+            <li>Collaborated with team members on project deliverables</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Key Projects -->
+  <section class="max-w-6xl mx-auto px-6 py-12">
+    <div class="bg-white rounded-xl shadow-lg p-8 section-card">
+      <h2 class="text-3xl font-bold text-gray-800 mb-8 border-b-4 border-blue-600 inline-block pb-2">Key Projects</h2>
+      
+      <div class="space-y-8">
+        <!-- Project 1: STMicro Electronics -->
+        <div class="bg-gradient-to-r from-blue-50 to-indigo-50 p-6 rounded-lg border-l-4 border-blue-600">
+          <h3 class="text-2xl font-bold text-gray-800 mb-2">STMicro Electronics</h3>
+          <p class="text-sm text-gray-600 mb-3"><strong>Technologies:</strong> Core Java, JDK 1.8, Spring Boot, GIT, Maven, Spring, AWS, Hibernate</p>
+          
+          <p class="text-gray-700 mb-4">
+            Developed and implemented FMEA processes to identify and mitigate potential failure modes in semiconductor and electronic component design. 
+            Conducted thorough risk assessments, collaborated with cross-functional teams, and analyzed failure data to provide actionable insights.
+          </p>
+          
+          <div class="bg-white p-4 rounded">
+            <h4 class="font-bold text-gray-800 mb-2">Key Responsibilities:</h4>
+            <ul class="list-disc list-inside text-gray-700 space-y-1 ml-4">
+              <li>Designed and developed microservices architecture using Spring Boot</li>
+              <li>Investigated and resolved user-facing issues, enhancing file import/export functionality</li>
+              <li>Optimized file handling processes adhering to best practices</li>
+              <li>Conducted comprehensive testing and quality assurance</li>
+              <li>Maintained detailed documentation of code updates and workflows</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Project 2: Marriott Vacation Worldwide -->
+        <div class="bg-gradient-to-r from-green-50 to-teal-50 p-6 rounded-lg border-l-4 border-green-600">
+          <h3 class="text-2xl font-bold text-gray-800 mb-2">Marriott Vacation Worldwide</h3>
+          <p class="text-sm text-gray-600 mb-3"><strong>Technologies:</strong> Core Java, JDK 1.8, GIT, Maven, Spring Boot, Spring, Jenkins, AWS, Postman, Jira, Hibernate</p>
+          
+          <p class="text-gray-700 mb-4">
+            Developed an automated workflow to validate incoming CSV data based on predefined LOI rules, stored validated data in a structured database, 
+            generated standardized files for integration into MuleSoft, and streamlined data processing.
+          </p>
+          
+          <div class="bg-white p-4 rounded">
+            <h4 class="font-bold text-gray-800 mb-2">Key Responsibilities:</h4>
+            <ul class="list-disc list-inside text-gray-700 space-y-1 ml-4">
+              <li>Developed microservices for data validation and processing</li>
+              <li>Created automated workflow for CSV data validation ensuring data integrity</li>
+              <li>Implemented structured database storage for validated data</li>
+              <li>Generated standardized files and integrated them into MuleSoft</li>
+              <li>Enhanced data accuracy and reduced manual intervention</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Project 3: Oracle Wesco -->
+        <div class="bg-gradient-to-r from-purple-50 to-pink-50 p-6 rounded-lg border-l-4 border-purple-600">
+          <h3 class="text-2xl font-bold text-gray-800 mb-2">Oracle Wesco</h3>
+          <p class="text-sm text-gray-600 mb-3"><strong>Technologies:</strong> Core Java, JDK 1.8, GIT, Maven, Spring Boot, Spring, Jenkins, Postman, Jira, Hibernate</p>
+          
+          <p class="text-gray-700 mb-4">
+            Worked on code-level issues for Wesco, focusing on development tasks such as identifying and implementing logical changes in Java, 
+            managing database changes, and implementing APIs to fetch data.
+          </p>
+          
+          <div class="bg-white p-4 rounded">
+            <h4 class="font-bold text-gray-800 mb-2">Key Responsibilities:</h4>
+            <ul class="list-disc list-inside text-gray-700 space-y-1 ml-4">
+              <li>Enhanced existing microservices architecture improving system integration</li>
+              <li>Resolved code-level issues ensuring stability of distribution and logistics solutions</li>
+              <li>Implemented logical changes in Java to enhance system performance</li>
+              <li>Developed APIs for seamless data retrieval and integration</li>
+              <li>Conducted thorough testing and debugging to ensure code quality</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
 
   <!-- Education -->
-  <section class="max-w-4xl mx-auto p-6">
-    <h2 class="text-2xl font-semibold text-blue-700 mb-4">Education</h2>
-    <div class="space-y-2">
-      <p><strong>AVN Institute of Engineering</strong> — Bachelor's in Mechanical Engineering (2013–2017)</p>
-      <p><strong>Narayana Junior College</strong> — Intermediate, MPC (2011–2013)</p>
-      <p><strong>Expert Model High School</strong> — High School (2001–2011)</p>
+  <section class="max-w-6xl mx-auto px-6 py-12">
+    <div class="bg-white rounded-xl shadow-lg p-8 section-card">
+      <h2 class="text-3xl font-bold text-gray-800 mb-8 border-b-4 border-blue-600 inline-block pb-2">Education</h2>
+      
+      <div class="bg-gradient-to-r from-blue-50 to-indigo-50 p-6 rounded-lg">
+        <div class="flex items-start">
+          <div class="bg-blue-600 text-white rounded-full w-12 h-12 flex items-center justify-center font-bold text-xl mr-4 flex-shrink-0">
+            🎓
+          </div>
+          <div>
+            <h3 class="text-xl font-bold text-gray-800">B.Tech in Mechanical Engineering</h3>
+            <p class="text-blue-600 font-semibold">AVN Institute of Engineering and Technology (J.N.T.U-Hyderabad)</p>
+            <p class="text-gray-600 mt-2">2013 - 2017 | Aggregate: 67%</p>
+            <p class="text-gray-700 mt-3">
+              Strong foundation in engineering principles with focus on analytical thinking and problem-solving. 
+              Transitioned successfully into software development, leveraging engineering discipline and technical aptitude.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Personal Details -->
+  <section class="max-w-6xl mx-auto px-6 py-12">
+    <div class="bg-white rounded-xl shadow-lg p-8 section-card">
+      <h2 class="text-3xl font-bold text-gray-800 mb-8 border-b-4 border-blue-600 inline-block pb-2">Personal Details</h2>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="bg-gray-50 p-4 rounded-lg">
+          <p class="text-gray-600 text-sm font-semibold mb-1">Name</p>
+          <p class="text-gray-800 text-lg">Narsing Abhishek</p>
+        </div>
+        
+        <div class="bg-gray-50 p-4 rounded-lg">
+          <p class="text-gray-600 text-sm font-semibold mb-1">Gender</p>
+          <p class="text-gray-800 text-lg">Male</p>
+        </div>
+        
+        <div class="bg-gray-50 p-4 rounded-lg">
+          <p class="text-gray-600 text-sm font-semibold mb-1">Nationality</p>
+          <p class="text-gray-800 text-lg">Indian</p>
+        </div>
+        
+        <div class="bg-gray-50 p-4 rounded-lg">
+          <p class="text-gray-600 text-sm font-semibold mb-1">Languages Known</p>
+          <p class="text-gray-800 text-lg">English, Telugu, Hindi</p>
+        </div>
+      </div>
     </div>
   </section>
 
   <!-- Footer -->
-  <footer class="bg-gray-800 text-white text-center py-4 mt-10">
-    <p>© 2025 Abhishek Narsing · Built with ❤️ using TailwindCSS</p>
+  <footer class="bg-gradient-to-r from-gray-800 to-gray-900 text-white py-8 mt-12">
+    <div class="max-w-6xl mx-auto px-6 text-center">
+      <p class="text-lg mb-2">© 2025 Narsing Abhishek · Senior Software Developer</p>
+      <p class="text-gray-400 text-sm">Built with modern web technologies · Tailwind CSS</p>
+      <div class="mt-4 flex justify-center gap-4">
+        <a href="mailto:abhisheknarsing819@gmail.com" class="hover:text-blue-400 transition">Email</a>
+        <span class="text-gray-600">|</span>
+        <a href="tel:+919346202314" class="hover:text-blue-400 transition">Phone</a>
+      </div>
+    </div>
   </footer>
+
 </body>
 </html>
