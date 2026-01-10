@@ -606,6 +606,39 @@
                 grid-template-columns: 1fr;
             }
         }
+
+        /* Tooltip */
+        [data-tooltip] {
+            position: relative;
+            cursor: help;
+        }
+
+        [data-tooltip]:hover::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: 150%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #2d3748;
+            color: white;
+            padding: 0.5rem 0.8rem;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            white-space: nowrap;
+            z-index: 10;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            pointer-events: none;
+        }
+
+        [data-tooltip]:hover::before {
+            content: "";
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 6px solid transparent;
+            border-top-color: #2d3748;
+        }
     </style>
 </head>
 
@@ -700,7 +733,8 @@
                     <h3 class="feature-title">Native Telugu Syntax</h3>
                     <span class="feature-subtitle">మాతృభాషలో కోడింగ్</span>
                     <p>Write code naturally using Telugu keywords like <code>మాట్లాడు</code> (print) and
-                        <code>ఉంటే</code> (if). Perfect for beginners and students.</p>
+                        <code>ఉంటే</code> (if). Perfect for beginners and students.
+                    </p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">⚡</div>
@@ -742,13 +776,13 @@
                         <div class="window-label">arrays.tl</div>
                     </div>
                     <div class="example-content"><span class="cmt"># స్నేహితుల జాబితా (List of friends)</span>
-<span class="kw">సృష్టించు</span> స్నేహితులు = [<span class="str">"రవి"</span>, <span
-    class="str">"సీత"</span>, <span class="str">"లత"</span>]
+                        <span class="kw">సృష్టించు</span> స్నేహితులు = [<span class="str">"రవి"</span>, <span
+                            class="str">"సీత"</span>, <span class="str">"లత"</span>]
 
-<span class="kw">కొరకు</span> (<span class="kw">సృష్టించు</span> i = <span class="num">0</span>;
-i < <span class="num">3</span>; i = i + <span class="num">1</span>) {
-    <span class="kw">మాట్లాడు</span>(స్నేహితులు[i] + <span class="str">" నా స్నేహితుడు"</span>)
-}
+                        <span class="kw">కొరకు</span> (<span class="kw">సృష్టించు</span> i = <span class="num">0</span>;
+                        i < <span class="num">3</span>; i = i + <span class="num">1</span>) {
+                            <span class="kw">మాట్లాడు</span>(స్నేహితులు[i] + <span class="str">" నా స్నేహితుడు"</span>)
+                            }
                     </div>
                 </div>
 
@@ -767,16 +801,16 @@ i < <span class="num">3</span>; i = i + <span class="num">1</span>) {
                         <div class="window-label">functions.tl</div>
                     </div>
                     <div class="example-content"><span class="kw">పని</span> <span class="fn">సరి_సంఖ్యా</span>(n) {
-    <span class="kw">ఉంటే</span> (n % <span class="num">2</span> == <span class="num">0</span>) {
-        <span class="kw">చల్లు</span> <span class="kw">నిజం</span>
-    }
-    <span class="kw">చల్లు</span> <span class="kw">అబద్ధం</span>
-}
+                        <span class="kw">ఉంటే</span> (n % <span class="num">2</span> == <span class="num">0</span>) {
+                        <span class="kw">చల్లు</span> <span class="kw">నిజం</span>
+                        }
+                        <span class="kw">చల్లు</span> <span class="kw">అబద్ధం</span>
+                        }
 
-<span class="kw">సృష్టించు</span> సంఖ్య = <span class="num">10</span>
-<span class="kw">ఉంటే</span> (<span class="fn">సరి_సంఖ్యా</span>(సంఖ్య)) {
-    <span class="kw">మాట్లాడు</span>(<span class="str">"ఇది సరి సంఖ్య"</span>)
-}
+                        <span class="kw">సృష్టించు</span> సంఖ్య = <span class="num">10</span>
+                        <span class="kw">ఉంటే</span> (<span class="fn">సరి_సంఖ్యా</span>(సంఖ్య)) {
+                        <span class="kw">మాట్లాడు</span>(<span class="str">"ఇది సరి సంఖ్య"</span>)
+                        }
                     </div>
                 </div>
 
@@ -795,15 +829,15 @@ i < <span class="num">3</span>; i = i + <span class="num">1</span>) {
                         <div class="window-label">countdown.tl</div>
                     </div>
                     <div class="example-content"><span class="cmt"># కౌంట్‌డౌన్ (Countdown)</span>
-<span class="kw">సృష్టించు</span> సమయం = <span class="num">5</span>
+                        <span class="kw">సృష్టించు</span> సమయం = <span class="num">5</span>
 
-<span class="kw">చేయి</span> (సమయం > <span class="num">0</span>) {
-    <span class="kw">మాట్లాడు</span>(సమయం)
-    సమయం = సమయం - <span class="num">1</span>
-}
+                        <span class="kw">చేయి</span> (సమయం > <span class="num">0</span>) {
+                        <span class="kw">మాట్లాడు</span>(సమయం)
+                        సమయం = సమయం - <span class="num">1</span>
+                        }
 
-<span class="kw">మాట్లాడు</span>(<span class="str">"ప్రారంభించు!"</span>) <span class="cmt">#
-    Start!</span>
+                        <span class="kw">మాట్లాడు</span>(<span class="str">"ప్రారంభించు!"</span>) <span class="cmt">#
+                            Start!</span>
                     </div>
                 </div>
 
@@ -822,13 +856,13 @@ i < <span class="num">3</span>; i = i + <span class="num">1</span>) {
                         <div class="window-label">input.tl</div>
                     </div>
                     <div class="example-content"><span class="kw">మాట్లాడు</span>(<span class="str">"మీ పేరు
-    ఏమిటి?"</span>)
-<span class="kw">సృష్టించు</span> పేరు = <span class="kw">అడుగు</span>()
+                            ఏమిటి?"</span>)
+                        <span class="kw">సృష్టించు</span> పేరు = <span class="kw">అడుగు</span>()
 
-<span class="kw">ఉంటే</span> (పేరు != <span class="kw">శూన్యం</span>) {
-    <span class="kw">మాట్లాడు</span>(<span class="str">"నమస్కారం, "</span> + పేరు + <span
-    class="str">"!"</span>)
-}
+                        <span class="kw">ఉంటే</span> (పేరు != <span class="kw">శూన్యం</span>) {
+                        <span class="kw">మాట్లాడు</span>(<span class="str">"నమస్కారం, "</span> + పేరు + <span
+                            class="str">"!"</span>)
+                        }
                     </div>
                 </div>
 
@@ -968,11 +1002,15 @@ i < <span class="num">3</span>; i = i + <span class="num">1</span>) {
                     style="background:none; -webkit-text-fill-color: #a0aec0; margin-left: 1rem; font-size: 0.95rem;">
                     తెలుగులో కోడ్ చేయండి!
                 </span>
+                <div style="margin-top: 0.5rem; font-size: 0.9rem; color: #718096;">
+                    Created by <a href="https://abhisheknarsing.github.io" class="footer-link"
+                        style="margin-right: 0; color: #cbd5e0;">Abhishek Narsing</a>
+                </div>
             </div>
             <div style="text-align: right;">
-                <a href="#" class="footer-link">Privacy</a>
-                <a href="#" class="footer-link">License</a>
-                <a href="https://github.com/user/tp-lang" class="footer-link">GitHub</a>
+                <a href="#" class="footer-link" data-tooltip="Strictly offline. No data collection defined.">Privacy</a>
+                <a href="#" class="footer-link">MIT License</a>
+                <a href="https://github.com/Abhisheknarsing/tp-lang/" class="footer-link">GitHub</a>
             </div>
         </div>
     </footer>

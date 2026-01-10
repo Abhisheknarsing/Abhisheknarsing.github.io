@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="telp Documentation - Learn how to set up and program with the Telugu Programming Language.">
+    <title>Documentation - telp teప్రో</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Telugu:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            /* Palette */
+            --c-cream: #FFF7DD;
+            --c-green-light: #B4DEBD;
+            --c-teal: #91C4C3;
+            --c-blue-muted: #80A1BA;
+
+            --c-primary: #1a365d;
+            --c-accent: #2c5282;
+            --c-text-main: #2d3748;
+            --c-text-light: #4a5568;
+            --c-bg-body: #ffffff;
+            --c-bg-alt: #f7fafc;
+            --c-border: #e2e8f0;
+
+            --font-main: 'Inter', 'Noto Sans Telugu', system-ui, -apple-system, sans-serif;
+            --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+
+            --radius-md: 8px;
+            --radius-lg: 12px;
+
+            --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        /* Reset & Base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background-color: var(--c-bg-body);
+            color: var(--c-text-main);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.2s;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        h1,
+        h2,
+        h3 {
+            line-height: 1.3;
+            font-weight: 700;
+            letter-spacing: -0.01em;
+        }
+
+        p {
+            color: var(--c-text-light);
+        }
+
+        code {
+            font-family: var(--font-mono);
+            background: var(--c-bg-alt);
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            color: #2c5282;
+            font-weight: 500;
+        }
+
+        /* Components */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        /* Navbar */
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--c-border);
+            height: 4.5rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+
+        .brand {
+            font-size: 1.5rem;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--c-primary);
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        .nav-menu a:hover {
+            color: var(--c-accent);
+        }
+
+        .nav-menu a.active {
+            color: var(--c-accent);
+            font-weight: 600;
+        }
+
+        .nav-cta {
+            background: var(--c-cream);
+            color: var(--c-primary);
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .nav-cta:hover {
+            background: var(--c-green-light);
+            border-color: var(--c-green-light);
+        }
+
+        /* Docs Layout */
+        .docs-page {
+            background: var(--c-bg-body);
+        }
+
+        .docs-container {
+            display: grid;
+            grid-template-columns: 240px 1fr;
+            max-width: 1200px;
+            margin: 0 auto;
+            gap: 3rem;
+            padding: 3rem 1.5rem;
+            align-items: start;
+        }
+
+        .sidebar {
+            position: sticky;
+            top: 6rem;
+            border-right: 1px solid var(--c-border);
+            padding-right: 1.5rem;
+        }
+
+        .sidebar ul {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+
+        .sidebar-header {
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--c-primary);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .sidebar a {
+            color: var(--c-text-light);
+            font-size: 0.95rem;
+            padding: 0.5rem 0.75rem;
+            border-radius: 6px;
+            display: block;
+        }
+
+        .sidebar a:hover,
+        .sidebar a.current {
+            background: var(--c-bg-alt);
+            color: var(--c-accent);
+            font-weight: 600;
+        }
+
+        .doc-content {
+            min-height: 80vh;
+        }
+
+        .doc-content h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--c-primary);
+        }
+
+        .doc-content h2 {
+            font-size: 1.8rem;
+            margin-top: 3rem;
+            margin-bottom: 1rem;
+            color: #2d3748;
+            border-bottom: 1px solid var(--c-border);
+            padding-bottom: 0.5rem;
+        }
+
+        .doc-content h3 {
+            font-size: 1.3rem;
+            margin-top: 2rem;
+            margin-bottom: 0.75rem;
+            color: #2d3748;
+        }
+
+        .doc-content p,
+        .doc-content li {
+            margin-bottom: 1rem;
+            line-height: 1.7;
+            font-size: 1.05rem;
+            color: #4a5568;
+        }
+
+        .doc-content ul {
+            list-style: disc;
+            margin-left: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Window Style for Code (Reused) */
+        .example-window {
+            background: #1e293b;
+            border-radius: var(--radius-md);
+            border: 1px solid #334155;
+            overflow: hidden;
+            border: 1px solid #334155;
+            margin: 1.5rem 0;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .window-bar {
+            background: #0f172a;
+            padding: 0.5rem 1rem;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid #334155;
+            justify-content: space-between;
+        }
+
+        .window-controls {
+            display: flex;
+            gap: 6px;
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+
+        .dot-r {
+            background: #ff5f56;
+        }
+
+        .dot-y {
+            background: #ffbd2e;
+        }
+
+        .dot-g {
+            background: #27c93f;
+        }
+
+        .window-label {
+            color: #64748b;
+            font-size: 0.8rem;
+            font-family: var(--font-mono);
+        }
+
+        .example-content {
+            padding: 1.5rem;
+            background: #1e293b;
+            color: #e2e8f0;
+            font-family: var(--font-mono);
+            font-size: 0.9rem;
+            line-height: 1.7;
+            overflow-x: auto;
+            white-space: pre;
+        }
+
+        /* Syntax Highlighting Colors */
+        .kw {
+            color: #c678dd;
+        }
+
+        .fn {
+            color: #61afef;
+        }
+
+        .str {
+            color: #98c379;
+        }
+
+        .num {
+            color: #d19a66;
+        }
+
+        .cmt {
+            color: #5c6370;
+            font-style: italic;
+        }
+
+        /* Footer */
+        footer {
+            background: #1a365d;
+            color: #e2e8f0;
+            padding: 4rem 0;
+            margin-top: 4rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+        }
+
+        .footer-link {
+            color: #a0aec0;
+            margin-right: 1.5rem;
+            transition: color 0.2s;
+        }
+
+        .footer-link:hover {
+            color: white;
+        }
+
+        /* Tooltip */
+        [data-tooltip] {
+            position: relative;
+            cursor: help;
+        }
+
+        [data-tooltip]:hover::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: 150%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #2d3748;
+            color: white;
+            padding: 0.5rem 0.8rem;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            white-space: nowrap;
+            z-index: 10;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            pointer-events: none;
+        }
+
+        [data-tooltip]:hover::before {
+            content: "";
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 6px solid transparent;
+            border-top-color: #2d3748;
+        }
+
+        @media (max-width: 900px) {
+            .docs-container {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                display: none;
+            }
+
+            /* Hide sidebar on mobile for now */
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container nav-inner">
+            <a href="index.html" class="brand">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="24" height="24" rx="6" fill="#2B6CB0" />
+                    <path d="M7 12H17M7 8H17M7 16H12" stroke="white" stroke-width="2.5" stroke-linecap="round" />
+                </svg>
+                telp
+            </a>
+            <div class="nav-menu">
+                <a href="index.html#features">Features</a>
+                <a href="index.html#examples">Examples</a>
+                <a href="docx.html" class="active">Docs</a>
+            </div>
+            <a href="index.html#download" class="nav-cta">Download</a>
+        </div>
+    </nav>
+
+    <div class="docs-page">
+        <div class="docs-container">
+            <!-- Sidebar -->
+            <aside class="sidebar">
+                <div class="sidebar-header">Getting Started</div>
+                <ul>
+                    <li><a href="#intro">Introduction</a></li>
+                    <li><a href="#install">Installation</a></li>
+                    <li><a href="#running">Running Programs</a></li>
+                </ul>
+                <div class="sidebar-header" style="margin-top: 1.5rem;">Language Guide</div>
+                <ul>
+                    <li><a href="#syntax">Basic Syntax</a></li>
+                    <li><a href="#variables">Variables</a></li>
+                    <li><a href="#io">Input/Output</a></li>
+                    <li><a href="#control">Control Flow</a></li>
+                    <li><a href="#functions">Functions</a></li>
+                </ul>
+            </aside>
+
+            <!-- Main Content -->
+            <main class="doc-content">
+                <h1 id="intro">Learning telp (నేర్చుకుందాం)</h1>
+                <p class="lead">Welcome to the official documentation for <strong>telp</strong>, a programming language
+                    designed to be written in Telugu.</p>
+
+                <h2 id="install">Installation Setup</h2>
+                <p>Getting started with telp is easy. We provide pre-built binaries for Windows, macOS, and Linux that
+                    include everything you need, including the Node.js runtime.</p>
+
+                <h3>1. Download</h3>
+                <p>Go to the <a href="index.html#download"
+                        style="color: var(--c-accent); text-decoration: underline;">download section</a> and choose the
+                    package for your operating system.</p>
+
+                <h3>2. Extract</h3>
+                <p>Unzip the downloaded file to a location of your choice (e.g., <code>C:\telp</code> on Windows or
+                    <code>~/telp</code> on macOS/Linux).</p>
+
+                <h3>3. Verify</h3>
+                <p>Open your terminal or command prompt, navigate to the folder, and run:</p>
+                <div class="example-window">
+                    <div class="window-bar">
+                        <div class="window-label">Terminal</div>
+                    </div>
+                    <div class="example-content" style="padding: 1rem; color: #fff;">$ ./telp --help</div>
+                </div>
+
+                <h2 id="running">Running Programs</h2>
+                <p>To run a Telugu program, create a file with the <code>.tl</code> extension.</p>
+
+                <div class="example-window">
+                    <div class="window-bar">
+                        <div class="window-controls">
+                            <div class="dot dot-r"></div>
+                            <div class="dot dot-y"></div>
+                            <div class="dot dot-g"></div>
+                        </div>
+                        <div class="window-label">hello.tl</div>
+                    </div>
+                    <div class="example-content"><span class="kw">మాట్లాడు</span>(<span class="str">"నమస్కారం!"</span>)
+                    </div>
+                </div>
+
+                <p>Then execute it using the runner:</p>
+                <div class="example-window">
+                    <div class="window-bar">
+                        <div class="window-label">Terminal</div>
+                    </div>
+                    <div class="example-content" style="padding: 1rem; color: #fff;">$ ./telp run hello.tl</div>
+                </div>
+
+                <h2 id="variables">Variables (సృష్టించు)</h2>
+                <p>Use the <code>సృష్టించు</code> keyword to declare variables. telp supports numbers, strings, arrays,
+                    and booleans.</p>
+                <div class="example-window">
+                    <div class="example-content"><span class="cmt"># Creating variables</span>
+                        <span class="kw">సృష్టించు</span> పేరు = <span class="str">"రాజు"</span>
+                        <span class="kw">సృష్టించు</span> వయస్సు = <span class="num">25</span>
+                        <span class="kw">సృష్టించు</span> విద్యార్థి = <span class="kw">నిజం</span>
+                    </div>
+                </div>
+
+                <h2 id="io">Input & Output</h2>
+                <h3>Printing (మాట్లాడు)</h3>
+                <p>Print values to the console using <code>మాట్లాడు</code>.</p>
+                <div class="example-window">
+                    <div class="example-content"><span class="kw">మాట్లాడు</span>(<span class="str">"హలో"</span>)
+                        <span class="kw">మాట్లాడు</span>(<span class="num">10</span> + <span class="num">20</span>)
+                    </div>
+                </div>
+
+                <h3>Input (అడుగు)</h3>
+                <p>Take user input using <code>అడుగు()</code>. It pauses execution until the user types something.</p>
+                <div class="example-window">
+                    <div class="example-content"><span class="kw">సృష్టించు</span> పేరు = <span
+                            class="kw">అడుగు</span>()
+                        <span class="kw">మాట్లాడు</span>(<span class="str">"హలో "</span> + పేరు)
+                    </div>
+                </div>
+
+                <h2 id="control">Control Flow</h2>
+                <h3>If / Else (ఉంటే / లేకపోతే)</h3>
+                <p>Make decisions in your code.</p>
+                <div class="example-window">
+                    <div class="example-content"><span class="kw">ఉంటే</span> (వయస్సు >= <span class="num">18</span>) {
+                        <span class="kw">మాట్లాడు</span>(<span class="str">"మీరు ఓటు వేయవచ్చు"</span>)
+                        } <span class="kw">లేకపోతే</span> {
+                        <span class="kw">మాట్లాడు</span>(<span class="str">"మీరు చిన్నవారు"</span>)
+                        }
+                    </div>
+                </div>
+
+                <h3>Loops (కొరకు / చేయి)</h3>
+                <p>Repeat code blocks. Use <code>కొరకు</code> for counting and <code>చేయి</code> for conditions.</p>
+                <div class="example-window">
+                    <div class="example-content"><span class="cmt"># For Loop</span>
+                        <span class="kw">కొరకు</span> (<span class="kw">సృష్టించు</span> i = <span class="num">0</span>;
+                        i < <span class="num">5</span>; i = i + <span class="num">1</span>) {
+                            <span class="kw">మాట్లాడు</span>(i)
+                            }
+
+                            <span class="cmt"># While Loop</span>
+                            <span class="kw">చేయి</span> (x > <span class="num">0</span>) {
+                            <span class="kw">మాట్లాడు</span>(x)
+                            x = x - <span class="num">1</span>
+                            }
+                    </div>
+                </div>
+
+                <h2 id="functions">Functions (పని)</h2>
+                <p>Define reusable blocks of code with <code>పని</code> and return values with <code>చల్లు</code>.</p>
+                <div class="example-window">
+                    <div class="example-content"><span class="kw">పని</span> <span class="fn">కూడిక</span>(a, b) {
+                        <span class="kw">చల్లు</span> a + b
+                        }
+
+                        <span class="kw">సృష్టించు</span> ఫలితం = <span class="fn">కూడిక</span>(<span
+                            class="num">10</span>, <span class="num">20</span>)
+                        <span class="kw">మాట్లాడు</span>(ఫలితం)
+                    </div>
+                </div>
+
+            </main>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container footer-grid">
+            <div>
+                <span style="font-weight: 700; color: white;">telp</span>
+                <span class="telugu-text"
+                    style="background:none; -webkit-text-fill-color: #a0aec0; margin-left: 1rem; font-size: 0.95rem;">
+                    తెలుగులో కోడ్ చేయండి!
+                </span>
+                <div style="margin-top: 0.5rem; font-size: 0.9rem; color: #718096;">
+                    Created by <a href="https://abhisheknarsing.github.io" class="footer-link"
+                        style="margin-right: 0; color: #cbd5e0;">Abhishek Narsing</a>
+                </div>
+            </div>
+            <div style="text-align: right;">
+                <a href="#" class="footer-link" data-tooltip="Strictly offline. No data collection defined.">Privacy</a>
+                <a href="#" class="footer-link">MIT License</a>
+                <a href="https://github.com/Abhisheknarsing/tp-lang/" class="footer-link">GitHub</a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>
