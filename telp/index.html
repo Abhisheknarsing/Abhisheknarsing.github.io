@@ -1,0 +1,982 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="telp - The Telugu Programming Language. Simple, fast, and built for everyone.">
+    <title>telp teప్రో - Telugu Programming Language</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+    <!-- Noto Sans Telugu for better rendering of Telugu script -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Telugu:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            /* Palette */
+            --c-cream: #FFF7DD;
+            --c-green-light: #B4DEBD;
+            --c-teal: #91C4C3;
+            --c-blue-muted: #80A1BA;
+
+            --c-primary: #1a365d;
+            /* Deep blue for text/links */
+            --c-accent: #2c5282;
+            /* Brighter blue for buttons */
+            --c-text-main: #2d3748;
+            --c-text-light: #4a5568;
+            --c-bg-body: #ffffff;
+            --c-bg-alt: #f7fafc;
+            --c-border: #e2e8f0;
+
+            --font-main: 'Inter', 'Noto Sans Telugu', system-ui, -apple-system, sans-serif;
+            --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+
+            --radius-md: 8px;
+            --radius-lg: 12px;
+
+            --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        /* Reset & Base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background-color: var(--c-bg-body);
+            color: var(--c-text-main);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.2s;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* Typography */
+        h1,
+        h2,
+        h3 {
+            line-height: 1.3;
+            font-weight: 700;
+            letter-spacing: -0.01em;
+        }
+
+        p {
+            color: var(--c-text-light);
+        }
+
+        /* Components */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.75rem 1.5rem;
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background-color: var(--c-accent);
+            color: white;
+            border: 1px solid transparent;
+        }
+
+        .btn-primary:hover {
+            background-color: #1a365d;
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--c-primary);
+            border: 1px solid var(--c-border);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--c-accent);
+            background-color: var(--c-bg-alt);
+        }
+
+        /* Navbar */
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--c-border);
+            height: 4.5rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+
+        .brand {
+            font-size: 1.5rem;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--c-primary);
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        .nav-menu a:hover {
+            color: var(--c-accent);
+        }
+
+        .nav-cta {
+            background: var(--c-cream);
+            color: var(--c-primary);
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .nav-cta:hover {
+            background: var(--c-green-light);
+            border-color: var(--c-green-light);
+        }
+
+        /* Hero */
+        .hero {
+            padding: 5rem 0;
+            background: linear-gradient(180deg, #fff 0%, var(--c-bg-alt) 100%);
+            border-bottom: 1px solid var(--c-border);
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            color: #1a202c;
+        }
+
+        .telugu-heading {
+            color: #2b6cb0;
+            display: block;
+        }
+
+        .hero-content p {
+            font-size: 1.25rem;
+            margin-bottom: 2.5rem;
+            color: var(--c-text-light);
+            line-height: 1.7;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .code-window {
+            background: #1e293b;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            font-family: var(--font-mono);
+            border: 1px solid #334155;
+            position: relative;
+        }
+
+        .code-window::before {
+            content: "hello.tl";
+            position: absolute;
+            top: 0.6rem;
+            left: 0;
+            right: 0;
+            text-align: center;
+            color: #64748b;
+            font-size: 0.8rem;
+            pointer-events: none;
+        }
+
+        .window-header {
+            background: #0f172a;
+            padding: 0.75rem 1rem;
+            display: flex;
+            gap: 6px;
+            border-bottom: 1px solid #334155;
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+
+        .dot-r {
+            background: #ff5f56;
+        }
+
+        .dot-y {
+            background: #ffbd2e;
+        }
+
+        .dot-g {
+            background: #27c93f;
+        }
+
+        .window-body {
+            padding: 1.5rem;
+            color: #e2e8f0;
+            font-size: 0.95rem;
+            line-height: 1.8;
+        }
+
+        .kw {
+            color: #c678dd;
+        }
+
+        /* keyword */
+        .fn {
+            color: #61afef;
+        }
+
+        /* function */
+        .str {
+            color: #98c379;
+        }
+
+        /* string */
+        .num {
+            color: #d19a66;
+        }
+
+        /* number */
+        .cmt {
+            color: #5c6370;
+            font-style: italic;
+        }
+
+        /* Features */
+        .features {
+            padding: 5rem 0;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .feature-card {
+            padding: 2rem;
+            border: 1px solid var(--c-border);
+            border-radius: var(--radius-md);
+            transition: all 0.2s;
+            background: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card:hover {
+            border-color: var(--c-teal);
+            box-shadow: var(--shadow-md);
+            transform: translateY(-2px);
+        }
+
+        .feature-card::top {
+            content: "";
+            background: var(--c-cream);
+            height: 4px;
+            width: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .feature-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--c-cream);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            color: var(--c-primary);
+            font-size: 1.5rem;
+        }
+
+        .feature-title {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+            color: var(--c-text-main);
+        }
+
+        .feature-subtitle {
+            font-size: 1rem;
+            color: #718096;
+            margin-bottom: 1rem;
+            display: block;
+            font-weight: 500;
+        }
+
+        /* Examples Section */
+        .examples-section {
+            padding: 5rem 0;
+            background: var(--c-bg-alt);
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .example-window {
+            background: #1e293b;
+            border-radius: var(--radius-md);
+            border: 1px solid #334155;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .window-bar {
+            background: #0f172a;
+            padding: 0.75rem 1rem;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid #334155;
+        }
+
+        .window-controls {
+            display: flex;
+            gap: 6px;
+        }
+
+        .window-label {
+            margin-left: 1rem;
+            color: #64748b;
+            font-size: 0.8rem;
+            font-family: var(--font-mono);
+        }
+
+        .example-content {
+            padding: 1.5rem;
+            background: #1e293b;
+            color: #e2e8f0;
+            font-family: var(--font-mono);
+            font-size: 0.9rem;
+            line-height: 1.7;
+            overflow-x: auto;
+            white-space: pre;
+            flex-grow: 1;
+        }
+
+        .example-desc-text {
+            padding: 1rem 1.5rem;
+            background: #fff;
+            border-bottom: 1px solid var(--c-border);
+        }
+
+        .example-desc-text h3 {
+            font-size: 1.1rem;
+            color: var(--c-primary);
+            margin-bottom: 0.25rem;
+        }
+
+        .example-desc-text p {
+            font-size: 0.9rem;
+            color: var(--c-text-light);
+        }
+
+        /* Keyword Reference */
+        .pkg-section {
+            padding: 6rem 0;
+        }
+
+        .table-container {
+            background: white;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--c-border);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+
+        th {
+            background: var(--c-bg-alt);
+            padding: 1rem 1.5rem;
+            font-weight: 600;
+            color: var(--c-text-main);
+            border-bottom: 1px solid var(--c-border);
+        }
+
+        td {
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid var(--c-border);
+            color: var(--c-text-light);
+            vertical-align: top;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        code {
+            font-family: var(--font-mono);
+            background: var(--c-bg-alt);
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            color: #2c5282;
+            font-weight: 500;
+        }
+
+        /* Download Section */
+        .download-section {
+            padding: 6rem 0;
+            text-align: center;
+            background: linear-gradient(180deg, white 0%, var(--c-cream) 100%);
+        }
+
+        .download-grid {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            margin-top: 2.5rem;
+        }
+
+        .os-card {
+            background: white;
+            border: 1px solid var(--c-border);
+            border-radius: var(--radius-md);
+            padding: 2rem 1.5rem;
+            width: 260px;
+            text-align: left;
+            transition: all 0.2s;
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .os-card:hover {
+            border-color: var(--c-blue-muted);
+            box-shadow: var(--shadow-md);
+            transform: translateY(-4px);
+        }
+
+        .os-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--c-teal);
+        }
+
+        .os-name {
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin-bottom: 0.25rem;
+            color: var(--c-primary);
+        }
+
+        .os-arch {
+            font-size: 0.9rem;
+            color: var(--c-text-light);
+            margin-bottom: 1.5rem;
+        }
+
+        .dl-link {
+            font-size: 1rem;
+            color: white;
+            background: var(--c-accent);
+            padding: 0.6rem 1.2rem;
+            border-radius: 6px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: background 0.2s;
+        }
+
+        .dl-link:hover {
+            background: #1a365d;
+            text-decoration: none;
+        }
+
+        /* Footer */
+        footer {
+            background: #1a365d;
+            color: #e2e8f0;
+            padding: 4rem 0;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+        }
+
+        .footer-link {
+            color: #a0aec0;
+            margin-right: 1.5rem;
+            transition: color 0.2s;
+        }
+
+        .footer-link:hover {
+            color: white;
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-content {
+                text-align: center;
+            }
+
+            .hero-actions {
+                justify-content: center;
+            }
+
+            .nav-menu {
+                display: none;
+            }
+
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container nav-inner">
+            <a href="#" class="brand">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="24" height="24" rx="6" fill="#2B6CB0" />
+                    <path d="M7 12H17M7 8H17M7 16H12" stroke="white" stroke-width="2.5" stroke-linecap="round" />
+                </svg>
+                telp
+            </a>
+            <div class="nav-menu">
+                <a href="#features">Features</a>
+                <a href="#examples">Examples (ఉదాహరణలు)</a>
+                <a href="#docs">Docs</a>
+            </div>
+            <a href="#download" class="nav-cta">Download (డౌన్‌లోడ్)</a>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <header class="hero">
+        <div class="container hero-grid">
+            <div class="hero-content">
+                <h1>మీ భాషలో కోడింగ్ నేర్చుకోండి.<br>
+                    <span class="telugu-heading">తెలుగు ప్రోగ్రామింగ్ భాష.</span>
+                </h1>
+                <p>
+                    telp is the first programming language designed for Telugu speakers.
+                    Write powerful software using simple Telugu syntax. Built on the robust Node.js runtime for
+                    performance and reliability.
+                </p>
+                <div class="hero-actions">
+                    <a href="#download" class="btn btn-primary">Download telp v1.0</a>
+                    <a href="#examples" class="btn btn-outline">See Examples</a>
+                </div>
+            </div>
+
+            <div class="code-window">
+                <div class="window-header">
+                    <div class="dot dot-r"></div>
+                    <div class="dot dot-y"></div>
+                    <div class="dot dot-g"></div>
+                </div>
+                <div class="window-body">
+                    <div class="line">
+                        <span class="cmt"># Hello World in telp</span>
+                    </div>
+                    <div class="line">
+                        <span class="kw">మాట్లాడు</span>(<span class="str">"నమస్కారం ప్రపంచం!"</span>)
+                    </div>
+                    <br>
+                    <div class="line">
+                        <span class="cmt"># Variable Declaration</span>
+                    </div>
+                    <div class="line">
+                        <span class="kw">సృష్టించు</span> పేరు = <span class="str">"రామ్"</span>
+                    </div>
+                    <div class="line">
+                        <span class="kw">మాట్లాడు</span>(<span class="str">"హలో, "</span> + పేరు)
+                    </div>
+                    <br>
+                    <div class="line">
+                        <span class="cmt"># Output:</span>
+                    </div>
+                    <div class="line" style="color: #98c379;">
+                        > నమస్కారం ప్రపంచం!
+                    </div>
+                    <div class="line" style="color: #98c379;">
+                        > హలో, రామ్
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Features -->
+    <section class="features" id="features">
+        <div class="container">
+            <div style="text-align: center; max-width: 700px; margin: 0 auto;">
+                <h2>Why use telp? (ఎందుకు వాడాలి?)</h2>
+                <p style="margin-top: 1rem;">Learning to code shouldn't be limited by language barriers.</p>
+            </div>
+
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🗣️</div>
+                    <h3 class="feature-title">Native Telugu Syntax</h3>
+                    <span class="feature-subtitle">మాతృభాషలో కోడింగ్</span>
+                    <p>Write code naturally using Telugu keywords like <code>మాట్లాడు</code> (print) and
+                        <code>ఉంటే</code> (if). Perfect for beginners and students.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3 class="feature-title">High Performance</h3>
+                    <span class="feature-subtitle">వేగవంతమైన పనితీరు</span>
+                    <p>Transpiles to optimized JavaScript and runs on the industrial-grade Node.js engine. Fast,
+                        generic, and reliable.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🛠️</div>
+                    <h3 class="feature-title">Complete Toolchain</h3>
+                    <span class="feature-subtitle">పూర్తి సాధనాలు</span>
+                    <p>Includes a compiler, runner, and interactive REPL. Works seamlessly on Windows, macOS, and Linux.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Examples -->
+    <section class="examples-section" id="examples">
+        <div class="container">
+            <h2>Code Examples (ఉదాహరణలు)</h2>
+            <p>See how common programming concepts are expressed in telp.</p>
+
+            <div class="grid-2">
+                <!-- Example 1: Arrays & Loops -->
+                <div class="example-window">
+                    <div class="example-desc-text">
+                        <h3>Loops & Arrays</h3>
+                        <p>Iterating through a list of items using a For loop.</p>
+                    </div>
+                    <div class="window-bar">
+                        <div class="window-controls">
+                            <div class="dot dot-r"></div>
+                            <div class="dot dot-y"></div>
+                            <div class="dot dot-g"></div>
+                        </div>
+                        <div class="window-label">arrays.tl</div>
+                    </div>
+                    <div class="example-content"><span class="cmt"># స్నేహితుల జాబితా (List of friends)</span>
+<span class="kw">సృష్టించు</span> స్నేహితులు = [<span class="str">"రవి"</span>, <span
+    class="str">"సీత"</span>, <span class="str">"లత"</span>]
+
+<span class="kw">కొరకు</span> (<span class="kw">సృష్టించు</span> i = <span class="num">0</span>;
+i < <span class="num">3</span>; i = i + <span class="num">1</span>) {
+    <span class="kw">మాట్లాడు</span>(స్నేహితులు[i] + <span class="str">" నా స్నేహితుడు"</span>)
+}
+                    </div>
+                </div>
+
+                <!-- Example 2: Functions -->
+                <div class="example-window">
+                    <div class="example-desc-text">
+                        <h3>Functions & Logic</h3>
+                        <p>Checking if a number is even or odd using a function.</p>
+                    </div>
+                    <div class="window-bar">
+                        <div class="window-controls">
+                            <div class="dot dot-r"></div>
+                            <div class="dot dot-y"></div>
+                            <div class="dot dot-g"></div>
+                        </div>
+                        <div class="window-label">functions.tl</div>
+                    </div>
+                    <div class="example-content"><span class="kw">పని</span> <span class="fn">సరి_సంఖ్యా</span>(n) {
+    <span class="kw">ఉంటే</span> (n % <span class="num">2</span> == <span class="num">0</span>) {
+        <span class="kw">చల్లు</span> <span class="kw">నిజం</span>
+    }
+    <span class="kw">చల్లు</span> <span class="kw">అబద్ధం</span>
+}
+
+<span class="kw">సృష్టించు</span> సంఖ్య = <span class="num">10</span>
+<span class="kw">ఉంటే</span> (<span class="fn">సరి_సంఖ్యా</span>(సంఖ్య)) {
+    <span class="kw">మాట్లాడు</span>(<span class="str">"ఇది సరి సంఖ్య"</span>)
+}
+                    </div>
+                </div>
+
+                <!-- Example 3: While Loop -->
+                <div class="example-window">
+                    <div class="example-desc-text">
+                        <h3>Conditionals & While Loop</h3>
+                        <p>A simple countdown timer implementation.</p>
+                    </div>
+                    <div class="window-bar">
+                        <div class="window-controls">
+                            <div class="dot dot-r"></div>
+                            <div class="dot dot-y"></div>
+                            <div class="dot dot-g"></div>
+                        </div>
+                        <div class="window-label">countdown.tl</div>
+                    </div>
+                    <div class="example-content"><span class="cmt"># కౌంట్‌డౌన్ (Countdown)</span>
+<span class="kw">సృష్టించు</span> సమయం = <span class="num">5</span>
+
+<span class="kw">చేయి</span> (సమయం > <span class="num">0</span>) {
+    <span class="kw">మాట్లాడు</span>(సమయం)
+    సమయం = సమయం - <span class="num">1</span>
+}
+
+<span class="kw">మాట్లాడు</span>(<span class="str">"ప్రారంభించు!"</span>) <span class="cmt">#
+    Start!</span>
+                    </div>
+                </div>
+
+                <!-- Example 4: Input -->
+                <div class="example-window">
+                    <div class="example-desc-text">
+                        <h3>User Input (Interactive)</h3>
+                        <p>Taking input from the user and responding.</p>
+                    </div>
+                    <div class="window-bar">
+                        <div class="window-controls">
+                            <div class="dot dot-r"></div>
+                            <div class="dot dot-y"></div>
+                            <div class="dot dot-g"></div>
+                        </div>
+                        <div class="window-label">input.tl</div>
+                    </div>
+                    <div class="example-content"><span class="kw">మాట్లాడు</span>(<span class="str">"మీ పేరు
+    ఏమిటి?"</span>)
+<span class="kw">సృష్టించు</span> పేరు = <span class="kw">అడుగు</span>()
+
+<span class="kw">ఉంటే</span> (పేరు != <span class="kw">శూన్యం</span>) {
+    <span class="kw">మాట్లాడు</span>(<span class="str">"నమస్కారం, "</span> + పేరు + <span
+    class="str">"!"</span>)
+}
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Documentation / Keywords -->
+    <section class="pkg-section" id="docs">
+        <div class="container">
+            <h2 style="margin-bottom: 2rem;">Keywords Reference (కీలక పదాలు)</h2>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th style="width: 20%">Keyword</th>
+                            <th style="width: 20%">English</th>
+                            <th>Description (వివరణ)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>మాట్లాడు</code></td>
+                            <td>print</td>
+                            <td>తెరపై సమాచారాన్ని చూపుతుంది (Prints to screen).</td>
+                        </tr>
+                        <tr>
+                            <td><code>సృష్టించు</code></td>
+                            <td>var / let</td>
+                            <td>కొత్త వేరియబుల్‌ను సృష్టిస్తుంది (Declares a variable).</td>
+                        </tr>
+                        <tr>
+                            <td><code>ఉంటే</code></td>
+                            <td>if</td>
+                            <td>షరతు నిజమైతే కోడ్ బ్లాక్‌ను అమలు చేస్తుంది (If condition).</td>
+                        </tr>
+                        <tr>
+                            <td><code>లేకపోతే</code></td>
+                            <td>else</td>
+                            <td>షరతు అబద్ధమైతే ప్రత్యామ్నాయ కోడ్ (Else condition).</td>
+                        </tr>
+                        <tr>
+                            <td><code>చేయి</code></td>
+                            <td>while</td>
+                            <td>షరతు నిజమైనంత వరకు లూప్ చేస్తుంది (While loop).</td>
+                        </tr>
+                        <tr>
+                            <td><code>కొరకు</code></td>
+                            <td>for</td>
+                            <td>నిర్ణీత సార్లు లూప్ చేయడానికి ఉపయోగిస్తారు (For loop).</td>
+                        </tr>
+                        <tr>
+                            <td><code>పని</code></td>
+                            <td>function</td>
+                            <td>కొత్త ఫంక్షన్‌ను నిర్వచిస్తుంది (Defines a function).</td>
+                        </tr>
+                        <tr>
+                            <td><code>చల్లు</code></td>
+                            <td>return</td>
+                            <td>ఫంక్షన్ నుండి విలువను వెనక్కి ఇస్తుంది (Returns value).</td>
+                        </tr>
+                        <tr>
+                            <td><code>అడుగు</code></td>
+                            <td>input</td>
+                            <td>వినియోగదారు నుండి ఇన్‌పుట్ తీసుకుంటుంది (Takes user input).</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Distribution -->
+    <section class="download-section" id="download">
+        <div class="container">
+            <h2>Download telp (డౌన్‌లోడ్)</h2>
+            <p style="margin-top: 1rem;">Version 1.0.0 — Includes Node.js runtime. <br>మీ ఆపరేటింగ్ సిస్టమ్ ఎంచుకోండి.
+            </p>
+
+            <div class="download-grid">
+                <div class="os-card">
+                    <div class="os-name">macOS</div>
+                    <div class="os-arch">Apple Silicon (M1/M2/M3)</div>
+                    <a href="downloads/telp-macos-arm64.zip" class="dl-link" download>
+                        Click to Download
+                        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"
+                            viewBox="0 0 24 24">
+                            <path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                        </svg>
+                    </a>
+                </div>
+
+                <div class="os-card">
+                    <div class="os-name">macOS</div>
+                    <div class="os-arch">Intel (x64)</div>
+                    <a href="downloads/telp-macos-x64.zip" class="dl-link" download>
+                        Click to Download
+                        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"
+                            viewBox="0 0 24 24">
+                            <path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                        </svg>
+                    </a>
+                </div>
+
+                <div class="os-card">
+                    <div class="os-name">Windows</div>
+                    <div class="os-arch">64-bit (x64)</div>
+                    <a href="downloads/telp-windows-x64.zip" class="dl-link" download>
+                        Click to Download
+                        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"
+                            viewBox="0 0 24 24">
+                            <path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                        </svg>
+                    </a>
+                </div>
+
+                <div class="os-card">
+                    <div class="os-name">Linux</div>
+                    <div class="os-arch">64-bit (x64)</div>
+                    <a href="downloads/telp-linux-x64.zip" class="dl-link" download>
+                        Click to Download
+                        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"
+                            viewBox="0 0 24 24">
+                            <path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container footer-grid">
+            <div>
+                <span style="font-weight: 700; color: white;">telp</span>
+                <span class="telugu-text"
+                    style="background:none; -webkit-text-fill-color: #a0aec0; margin-left: 1rem; font-size: 0.95rem;">
+                    తెలుగులో కోడ్ చేయండి!
+                </span>
+            </div>
+            <div style="text-align: right;">
+                <a href="#" class="footer-link">Privacy</a>
+                <a href="#" class="footer-link">License</a>
+                <a href="https://github.com/user/tp-lang" class="footer-link">GitHub</a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>
