@@ -1,219 +1,147 @@
-// Check for saved theme preference or respect OS preference
-const savedTheme = localStorage.getItem('theme');
-const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-const initialTheme = savedTheme || (prefersDark ? 'dark' : 'light');
+// ============================================================
+// MINIMAL PORTFOLIO — Scripts
+// ============================================================
 
-if (initialTheme === 'dark') {
-  document.documentElement.classList.add('dark-mode');
-  document.getElementById('themeToggle').innerHTML = '<i class="fas fa-sun"></i>';
-}
+document.addEventListener('DOMContentLoaded', () => {
 
-// Initialize mobile menu
-document.addEventListener('DOMContentLoaded', function() {
-  const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-  const sidebar = document.getElementById('sidebar');
-  const overlay = document.getElementById('overlay');
-  
-  // Ensure sidebar is closed on page load for mobile
-  if (sidebar && overlay && window.innerWidth <= 1024) {
-    sidebar.classList.remove('mobile-open');
-    overlay.classList.remove('active');
+  // --- Animated Dot Grid Canvas (Google I/O inspired) ---
+  const canvas = document.getElementById('heroCanvas');
+  if (canvas) {
+    const ctx = canvas.getContext('2d');
+    let width, height, dots = [];
+    let mouseX = -1000, mouseY = -1000;
+    const SPACING = 32;
+    const DOT_RADIUS = 1.2;
+    const HOVER_RADIUS = 120;
+
+    function initCanvas() {
+      const dpr = window.devicePixelRatio || 1;
+      const rect = canvas.parentElement.getBoundingClientRect();
+      width = rect.width;
+      height = rect.height;
+      canvas.width = width * dpr;
+      canvas.height = height * dpr;
+      canvas.style.width = width + 'px';
+      canvas.style.height = height + 'px';
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+      // Generate dot positions
+      dots = [];
+      for (let x = SPACING; x < width; x += SPACING) {
+        for (let y = SPACING; y < height; y += SPACING) {
+          dots.push({ x, y, baseAlpha: 0.06 + Math.random() * 0.04 });
+        }
+      }
+    }
+
+    function drawDots() {
+      ctx.clearRect(0, 0, width, height);
+      for (const dot of dots) {
+        const dx = dot.x - mouseX;
+        const dy = dot.y - mouseY;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        let alpha = dot.baseAlpha;
+        let radius = DOT_RADIUS;
+
+        if (dist < HOVER_RADIUS) {
+          const t = 1 - dist / HOVER_RADIUS;
+          alpha = dot.baseAlpha + t * 0.35;
+          radius = DOT_RADIUS + t * 2.5;
+        }
+
+        ctx.beginPath();
+        ctx.arc(dot.x, dot.y, radius, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(0, 0, 0, ${alpha})`;
+        ctx.fill();
+      }
+      requestAnimationFrame(drawDots);
+    }
+
+    canvas.parentElement.addEventListener('mousemove', (e) => {
+      const rect = canvas.parentElement.getBoundingClientRect();
+      mouseX = e.clientX - rect.left;
+      mouseY = e.clientY - rect.top;
+    });
+
+    canvas.parentElement.addEventListener('mouseleave', () => {
+      mouseX = -1000;
+      mouseY = -1000;
+    });
+
+    initCanvas();
+    drawDots();
+    window.addEventListener('resize', initCanvas);
   }
-  
-  if (mobileMenuBtn && sidebar && overlay) {
-    mobileMenuBtn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      sidebar.classList.toggle('mobile-open');
-      overlay.classList.toggle('active');
-    });
 
-    // Close mobile menu when clicking on overlay
-    overlay.addEventListener('click', (e) => {
-      e.stopPropagation();
-      sidebar.classList.remove('mobile-open');
-      overlay.classList.remove('active');
-    });
-
-    // Close mobile menu when clicking on nav links
-    const navLinks = document.querySelectorAll('.nav-link');
-    navLinks.forEach(link => {
-      link.addEventListener('click', () => {
-        sidebar.classList.remove('mobile-open');
-        overlay.classList.remove('active');
-      });
-    });
-
-    // Close mobile menu when resizing to desktop
-    window.addEventListener('resize', () => {
-      if (window.innerWidth > 1024) {
-        sidebar.classList.remove('mobile-open');
-        overlay.classList.remove('active');
+  // --- Scroll Reveal ---
+  const revealElements = document.querySelectorAll('.reveal');
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
       }
     });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 
-    // Close mobile menu when pressing Escape key
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && sidebar.classList.contains('mobile-open')) {
-        sidebar.classList.remove('mobile-open');
-        overlay.classList.remove('active');
+  revealElements.forEach(el => revealObserver.observe(el));
+
+  // --- Active Nav Link on Scroll ---
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a[data-section]');
+
+  function updateActiveLink() {
+    const scrollY = window.scrollY + 120;
+    sections.forEach(section => {
+      const top = section.offsetTop;
+      const height = section.offsetHeight;
+      const id = section.getAttribute('id');
+      if (scrollY >= top && scrollY < top + height) {
+        navLinks.forEach(link => {
+          link.classList.remove('active');
+          if (link.getAttribute('data-section') === id) {
+            link.classList.add('active');
+          }
+        });
       }
     });
   }
-});
 
-// Theme toggle
-const themeToggle = document.getElementById('themeToggle');
-themeToggle.addEventListener('click', () => {
-  document.documentElement.classList.toggle('dark-mode');
-  
-  // Update icon
-  if (document.documentElement.classList.contains('dark-mode')) {
-    themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
-    localStorage.setItem('theme', 'dark');
-  } else {
-    themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
-    localStorage.setItem('theme', 'light');
+  window.addEventListener('scroll', updateActiveLink, { passive: true });
+  updateActiveLink();
+
+  // --- Mobile Nav Toggle ---
+  const navToggle = document.getElementById('navToggle');
+  const navLinksEl = document.getElementById('navLinks');
+  const navOverlay = document.getElementById('navOverlay');
+
+  function toggleMenu() {
+    navToggle.classList.toggle('open');
+    navLinksEl.classList.toggle('open');
+    navOverlay.classList.toggle('open');
+    document.body.style.overflow = navLinksEl.classList.contains('open') ? 'hidden' : '';
   }
-});
 
-// Smooth scrolling for anchor links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-  anchor.addEventListener('click', function(e) {
-    e.preventDefault();
-    
-    const target = document.querySelector(this.getAttribute('href'));
-    if (target) {
-      // For mobile devices, we might want instant scroll instead of smooth
-      const behavior = window.innerWidth <= 1024 ? 'auto' : 'smooth';
-      
-      window.scrollTo({
-        top: target.offsetTop,
-        behavior: behavior
-      });
-      
-      // Update active nav link
-      document.querySelectorAll('.nav-link').forEach(link => {
-        link.classList.remove('active');
-      });
-      this.classList.add('active');
-    }
-  });
-});
+  navToggle.addEventListener('click', toggleMenu);
+  navOverlay.addEventListener('click', toggleMenu);
 
-// Set active nav link based on scroll position
-window.addEventListener('scroll', () => {
-  const sections = document.querySelectorAll('section');
-  const navLinks = document.querySelectorAll('.nav-link');
-  
-  let current = '';
-  
-  sections.forEach(section => {
-    const sectionTop = section.offsetTop;
-    const sectionHeight = section.clientHeight;
-    
-    if (pageYOffset >= (sectionTop - sectionHeight / 3)) {
-      current = section.getAttribute('id');
-    }
-  });
-  
-  navLinks.forEach(link => {
-    link.classList.remove('active');
-    if (link.getAttribute('href') === `#${current}`) {
-      link.classList.add('active');
-    }
-  });
-  
-  // Reveal sections on scroll
-  document.querySelectorAll('.section-reveal').forEach(section => {
-    const sectionTop = section.getBoundingClientRect().top;
-    const windowHeight = window.innerHeight;
-    
-    if (sectionTop < windowHeight - 100) {
-      section.classList.add('visible');
-    }
-  });
-});
-
-// Trigger scroll events on load
-window.addEventListener('load', () => {
-  window.dispatchEvent(new Event('scroll'));
-});
-
-// Contact form validation and submission
-const contactForm = document.getElementById('contactForm');
-if (contactForm) {
-  contactForm.addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    const formMessage = document.getElementById('formMessage');
-    const name = document.getElementById('name').value;
-    const email = document.getElementById('email').value;
-    const subject = document.getElementById('subject').value;
-    const message = document.getElementById('message').value;
-    
-    // Simple validation
-    if (!name || !email || !subject || !message) {
-      formMessage.textContent = 'Please fill in all required fields.';
-      formMessage.className = 'p-4 rounded-lg bg-red-100 text-red-700 sketch-border';
-      formMessage.classList.remove('hidden');
-      return;
-    }
-    
-    // Email validation
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-      formMessage.textContent = 'Please enter a valid email address.';
-      formMessage.className = 'p-4 rounded-lg bg-red-100 text-red-700 sketch-border';
-      formMessage.classList.remove('hidden');
-      return;
-    }
-    
-    // Success message (in a real application, you would send the form data to a server)
-    formMessage.textContent = 'Thank you for your message! I will get back to you soon.';
-    formMessage.className = 'p-4 rounded-lg bg-green-100 text-green-700 sketch-border';
-    formMessage.classList.remove('hidden');
-    
-    // Reset form
-    contactForm.reset();
-    
-    // Hide message after 5 seconds
-    setTimeout(() => {
-      formMessage.classList.add('hidden');
-    }, 5000);
-  });
-}
-
-// Add animation to hero section buttons on hover
-document.addEventListener('DOMContentLoaded', function() {
-  const heroButtons = document.querySelectorAll('#home .flex a');
-  heroButtons.forEach(button => {
-    button.addEventListener('mouseenter', function() {
-      this.classList.add('pulse-animation');
-    });
-    
-    button.addEventListener('mouseleave', function() {
-      this.classList.remove('pulse-animation');
+  // Close mobile menu on link click
+  navLinksEl.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      if (navLinksEl.classList.contains('open')) {
+        toggleMenu();
+      }
     });
   });
-  
-  // Initialize typing effect
-  const typingText = document.querySelector('.typing-text');
-  if (typingText) {
-    // Reset animation
-    typingText.style.animation = 'none';
-    setTimeout(() => {
-      typingText.style.animation = '';
-    }, 10);
-  }
-  
-  // Hide preloader when page is loaded
-  const preloader = document.getElementById('preloader');
-  if (preloader) {
-    setTimeout(() => {
-      preloader.style.opacity = '0';
-      setTimeout(() => {
-        preloader.style.display = 'none';
-      }, 300);
-    }, 500);
-  }
+
+  // --- Smooth Scroll for Nav Links ---
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', (e) => {
+      const target = document.querySelector(anchor.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+
 });
