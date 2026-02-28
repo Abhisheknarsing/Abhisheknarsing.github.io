@@ -3,30 +3,34 @@
    Inspired by: apple.com, linear.app, vercel.com, stripe.com
    ============================================================ */
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
 
 /* --- Custom Properties --- */
 :root {
-  --black: #000000;
-  --gray-900: #111111;
-  --gray-800: #1a1a1a;
-  --gray-700: #333333;
-  --gray-600: #555555;
-  --gray-500: #888888;
-  --gray-400: #ababab;
-  --gray-300: #d4d4d4;
-  --gray-200: #e8e8e8;
-  --gray-100: #f5f5f5;
-  --gray-50: #fafafa;
+  --black: #202124;
+  --gray-900: #202124;
+  --gray-800: #3c4043;
+  --gray-700: #5f6368;
+  --gray-600: #5f6368;
+  --gray-500: #80868b;
+  --gray-400: #bdc1c6;
+  --gray-300: #dadce0;
+  --gray-200: #e8eaed;
+  --gray-100: #f1f3f4;
+  --gray-50: #f8f9fa;
   --white: #ffffff;
-  --accent: #0a66c2;
+  --accent: #1a73e8;
+  --g-blue: #4285f4;
+  --g-red: #ea4335;
+  --g-yellow: #fbbc05;
+  --g-green: #34a853;
 
-  --font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  --ease: cubic-bezier(0.16, 1, 0.3, 1);
-  --transition: 0.4s var(--ease);
-  --radius-xl: 24px;
-  --radius-lg: 16px;
-  --radius-md: 12px;
+  --font: 'Google Sans', 'Product Sans', 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --ease: cubic-bezier(0.4, 0.0, 0.2, 1);
+  --transition: 0.3s var(--ease);
+  --radius-xl: 28px;
+  --radius-lg: 24px;
+  --radius-md: 16px;
   --radius-sm: 8px;
   --radius-full: 9999px;
   --max-width: 1280px;
@@ -256,18 +260,18 @@ button {
   padding: 8px 16px;
   background: var(--white);
   border-radius: var(--radius-full);
-  font-size: 0.8rem;
+  font-size: 0.82rem;
   font-weight: 500;
-  color: var(--gray-600);
+  color: var(--gray-700);
   margin-bottom: 28px;
-  border: 1px solid var(--gray-200);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  border: 1px solid var(--gray-300);
+  box-shadow: 0 1px 2px 0 rgba(60,64,67,0.3), 0 1px 3px 1px rgba(60,64,67,0.15);
 }
 
 .hero-badge .dot {
   width: 6px;
   height: 6px;
-  background: #22c55e;
+  background: var(--g-green);
   border-radius: 50%;
   animation: pulse-dot 2s infinite;
 }
@@ -329,43 +333,42 @@ button {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 11px 28px;
-  background: var(--black);
+  padding: 12px 24px;
+  background: var(--accent);
   color: var(--white);
   border-radius: var(--radius-full);
-  font-size: 0.85rem;
-  font-weight: 600;
+  font-size: 0.875rem;
+  font-weight: 500;
   transition: var(--transition);
   border: none;
   cursor: pointer;
-  letter-spacing: -0.01em;
+  letter-spacing: 0.25px;
 }
 
 .btn-primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+  background: #174ea6;
+  box-shadow: 0 1px 2px 0 rgba(60,64,67,0.3), 0 1px 3px 1px rgba(60,64,67,0.15);
 }
 
 .btn-secondary {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 11px 28px;
+  padding: 12px 24px;
   background: var(--white);
-  color: var(--black);
+  color: var(--accent);
   border-radius: var(--radius-full);
-  font-size: 0.85rem;
-  font-weight: 600;
-  border: 1.5px solid var(--gray-300);
+  font-size: 0.875rem;
+  font-weight: 500;
+  border: 1px solid var(--gray-300);
   transition: var(--transition);
   cursor: pointer;
-  letter-spacing: -0.01em;
+  letter-spacing: 0.25px;
 }
 
 .btn-secondary:hover {
-  border-color: var(--black);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+  background: var(--gray-50);
+  border-color: var(--gray-400);
 }
 
 .btn-outline-sm {
@@ -425,7 +428,7 @@ section {
 
 /* ============ ABOUT ============ */
 .about-section {
-  background: linear-gradient(160deg, #f8f9fb 0%, #eef1f6 40%, #f0f4f8 100%);
+  background: var(--white);
   color: var(--black);
 }
 
@@ -471,6 +474,7 @@ section {
   text-align: center;
   transition: var(--transition);
   overflow: hidden;
+  box-shadow: 0 1px 2px 0 rgba(60,64,67,0.3), 0 1px 3px 1px rgba(60,64,67,0.15);
 }
 
 .stat-card::before {
@@ -479,15 +483,14 @@ section {
   top: 0;
   left: 0;
   right: 0;
-  height: 3px;
-  background: linear-gradient(90deg, #4285f4, #34a853, #fbbc05, #ea4335);
-  opacity: 0;
-  transition: var(--transition);
+  height: 4px;
+  background: linear-gradient(90deg, var(--g-blue), var(--g-green), var(--g-yellow), var(--g-red));
+  opacity: 1;
 }
 
 .stat-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.06);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px -1px rgba(60,64,67,0.3), 0 2px 4px -1px rgba(60,64,67,0.15);
   border-color: transparent;
 }
 
@@ -501,10 +504,7 @@ section {
   letter-spacing: -0.04em;
   line-height: 1;
   margin-bottom: 6px;
-  background: linear-gradient(135deg, var(--black), var(--gray-600));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: var(--accent);
 }
 
 .stat-label {
@@ -580,11 +580,11 @@ section {
 }
 
 .level-dot.core {
-  background: var(--black);
+  background: var(--g-blue);
 }
 
 .level-dot.strong {
-  background: var(--gray-600);
+  background: var(--g-green);
 }
 
 .level-dot.familiar {
@@ -619,6 +619,7 @@ section {
 }
 
 .skill-card--primary {
+  border-top: 4px solid var(--g-blue);
   border-color: var(--gray-300);
 }
 
@@ -691,15 +692,15 @@ section {
 }
 
 .chip.core .chip-dot {
-  background: var(--black);
+  background: var(--g-blue);
 }
 
 .chip.strong .chip-dot {
-  background: var(--gray-600);
+  background: var(--g-green);
 }
 
 .chip.familiar .chip-dot {
-  background: var(--gray-300);
+  background: var(--g-yellow);
 }
 
 /* ============ EXPERIENCE ============ */
@@ -809,11 +810,7 @@ section {
 .projects-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1px;
-  background: var(--gray-200);
-  border: 1px solid var(--gray-200);
-  border-radius: var(--radius-xl);
-  overflow: hidden;
+  gap: 16px;
 }
 
 .project-card {
@@ -823,6 +820,8 @@ section {
   display: flex;
   flex-direction: column;
   position: relative;
+  box-shadow: 0 1px 2px 0 rgba(60,64,67,0.3), 0 1px 3px 1px rgba(60,64,67,0.15);
+  border-radius: var(--radius-lg);
 }
 
 .project-card:hover {
@@ -883,7 +882,7 @@ section {
 
 /* ============ CONTACT ============ */
 .contact-section {
-  background: linear-gradient(160deg, #f8f9fb 0%, #eef1f6 40%, #f0f4f8 100%);
+  background: var(--gray-50);
   color: var(--black);
   padding: clamp(56px, 8vw, 80px) 0;
 }
@@ -934,11 +933,7 @@ section {
 .contact-cards {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 1px;
-  background: var(--gray-200);
-  border: 1px solid var(--gray-200);
-  border-radius: var(--radius-lg);
-  overflow: hidden;
+  gap: 16px;
 }
 
 .contact-card {
@@ -949,6 +944,8 @@ section {
   background: var(--white);
   transition: var(--transition);
   text-decoration: none;
+  box-shadow: 0 1px 2px 0 rgba(60,64,67,0.3), 0 1px 3px 1px rgba(60,64,67,0.15);
+  border-radius: var(--radius-md);
 }
 
 .contact-card:hover {

@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         ctx.beginPath();
         ctx.arc(dot.x, dot.y, radius, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(0, 0, 0, ${alpha})`;
+        ctx.fillStyle = `rgba(26, 115, 232, ${alpha})`;
         ctx.fill();
       }
       requestAnimationFrame(drawDots);
