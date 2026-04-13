@@ -161,6 +161,14 @@ button {
   display: none !important;
 }
 
+.nav-icon:hover {
+  opacity: 0.7;
+}
+
+.nav-icon::after {
+  display: none !important;
+}
+
 .nav-toggle {
   display: none;
   background: none;
