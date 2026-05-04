@@ -1,0 +1,26 @@
+{
+    "id": "git-rebase",
+    "name": "git rebase",
+    "category": "Undoing & Rewriting",
+    "shortDescription": "Reapply commits on top of another base tip. Used for keeping feature branches up to date and rewriting commit history.",
+    "detailedDescription": "Rebasing is an alternative to merging. While merging creates a new commit that ties two histories together, rebasing rewrites the history by moving the base of your branch to a new commit.\n\nImagine you branched off `main` at commit A. While you made commits B and C on your branch, someone else merged commit D into `main`. If you rebase onto `main`, Git effectively rewinds your branch to A, updates it to D, and then replays your B and C commits on top of D. This results in a perfectly linear history.\n\n**Interactive Rebase (`-i`)** is one of Git's most powerful tools. It opens an editor allowing you to reorder, squash (combine), edit, or drop commits before they are replayed. This is how you clean up a messy local history before sharing it with the team.",
+    "syntax": "git rebase [-i | --interactive] [--abort | --continue] <upstream>",
+    "parameters": [
+        { "flag": "<upstream>", "description": "The branch to rebase your current branch onto (usually `main` or `develop`).", "default": "Required" },
+        { "flag": "-i / --interactive", "description": "Open an editor to modify the commits as they are being rebased. Allows squashing, editing messages, reordering, and dropping commits.", "default": "Standard rebase" },
+        { "flag": "--continue", "description": "Resume the rebase process after resolving a conflict.", "default": "N/A" },
+        { "flag": "--abort", "description": "Cancel the rebase completely and restore the branch to its state before the rebase started.", "default": "N/A" },
+        { "flag": "--autosquash", "description": "Automatically squash commits created with `git commit --fixup` during an interactive rebase.", "default": "N/A" }
+    ],
+    "examples": [
+        { "title": "Keep feature branch up to date", "description": "Instead of merging main into your feature branch, rebase it to keep history linear.", "code": "git checkout feature-branch\ngit fetch origin\ngit rebase origin/main\n\n# If conflicts occur, resolve them, git add the files, then:\ngit rebase --continue" },
+        { "title": "Squash commits (Interactive)", "description": "Clean up 5 messy WIP commits into 1 clean commit before opening a PR.", "code": "git rebase -i HEAD~5\n\n# Editor opens:\n# pick a1b2c3d Add feature\n# squash e4f5g6h Fix typo\n# squash i7j8k9l Add missing file\n# ... save and close, then edit the combined message" },
+        { "title": "Change an old commit message", "description": "Interactive rebase lets you edit messages of older commits, not just the last one.", "code": "git rebase -i HEAD~3\n# Change 'pick' to 'reword' for the commit you want to edit" }
+    ],
+    "commonMistakes": [
+        { "type": "danger", "text": "THE GOLDEN RULE OF REBASE: Never rebase commits that exist outside your repository and that people may have based work on. Rewriting shared history causes chaos." },
+        { "type": "warning", "text": "After a successful rebase, you must use `git push --force-with-lease` to push your branch to the remote, because your local commit hashes have changed." },
+        { "type": "info", "text": "If a rebase gets too complicated due to conflicts, `git rebase --abort` is your escape hatch." }
+    ],
+    "relatedCommands": ["git-merge", "git-commit", "git-push", "git-cherry-pick"]
+}

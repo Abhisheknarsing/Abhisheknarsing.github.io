@@ -1,0 +1,23 @@
+{
+    "id": "git-revert",
+    "name": "git revert",
+    "category": "Undoing & Rewriting",
+    "shortDescription": "Create a new commit that undoes the changes made by a previous commit. The safest way to undo changes in shared history.",
+    "detailedDescription": "Unlike `git reset` which deletes commits and rewrites history, `git revert` is a 'forward-moving' undo. It figures out what changes were introduced by a specific commit, and creates a brand new commit that applies the exact opposite changes.\n\nBecause it doesn't alter existing history, `git revert` is the only safe way to undo a bug that has already been pushed to a shared branch (like `main`). Your collaborators won't have to deal with divergent history; they simply pull down the new revert commit.\n\nWhen reverting a merge commit, you must specify which parent line to keep using the `-m` flag, because Git doesn't know which side of the merge was the 'main' line.",
+    "syntax": "git revert [--no-commit] [-m <parent-number>] <commit>",
+    "parameters": [
+        { "flag": "<commit>", "description": "The hash of the commit you want to undo.", "default": "Required" },
+        { "flag": "-n / --no-commit", "description": "Apply the inversion to the working directory and staging area, but do not automatically create the commit. Useful for reverting multiple commits at once.", "default": "Auto-commits" },
+        { "flag": "-m <parent-number>", "description": "Required when reverting a merge commit. Specifies which parent of the merge should be considered the mainline (usually 1).", "default": "N/A" }
+    ],
+    "examples": [
+        { "title": "Revert a specific commit", "description": "Undo the changes from a bad commit.", "code": "git revert a1b2c3d\n\n# Opens your editor to confirm the commit message:\n# 'Revert \"Add buggy feature\"'\n# Then creates the new commit." },
+        { "title": "Revert without committing immediately", "description": "Revert multiple commits and group the undo into a single new commit.", "code": "git revert -n HEAD~1\ngit revert -n HEAD~2\ngit commit -m \"Revert the last two commits\"" },
+        { "title": "Revert a merge commit", "description": "Undo a pull request that broke production.", "code": "# Assume a1b2c3d is the merge commit.\n# -m 1 says 'keep the code from the branch we merged into'\ngit revert -m 1 a1b2c3d" }
+    ],
+    "commonMistakes": [
+        { "type": "info", "text": "If you `git revert` a feature branch merge, and later try to merge that feature branch again, Git will say 'Already up to date'. You must revert the revert to get those changes back." },
+        { "type": "danger", "text": "Don't use `git reset` on public branches. ALWAYS use `git revert`. It leaves an audit trail of the mistake and the fix." }
+    ],
+    "relatedCommands": ["git-reset", "git-commit", "git-log"]
+}

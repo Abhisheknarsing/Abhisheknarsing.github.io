@@ -1,0 +1,26 @@
+{
+    "id": "git-reset",
+    "name": "git reset",
+    "category": "Undoing & Rewriting",
+    "shortDescription": "Reset current HEAD to the specified state. It can undo commits, unstage files, and discard working directory changes.",
+    "detailedDescription": "The `git reset` command moves the HEAD pointer and the current branch pointer backward to an older commit. Depending on the mode used, it can also modify the staging area (index) and the working directory.\n\nIt operates in three primary modes:\n1. `--soft`: Moves HEAD back, but leaves your staging area and working directory alone. Great for squashing or rewording the last commit.\n2. `--mixed` (default): Moves HEAD and updates the staging area, but leaves the working directory alone. Unstages changes but doesn't lose them.\n3. `--hard`: Moves HEAD, updates the staging area, AND overwrites the working directory. **WARNING:** Any uncommitted changes are permanently lost.\n\nResetting is safe for local, unpushed commits. Do not reset commits that have been pushed to a shared remote, as this rewrites history and disrupts collaborators.",
+    "syntax": "git reset [--soft | --mixed | --hard] [<commit>]",
+    "parameters": [
+        { "flag": "--soft", "description": "Moves HEAD but leaves staging area and working tree intact. All changes from the reset commits remain staged.", "default": "N/A" },
+        { "flag": "--mixed", "description": "Moves HEAD and resets the index (unstages everything). The working tree is untouched. This is the default mode.", "default": "Default" },
+        { "flag": "--hard", "description": "Moves HEAD, resets the index, and modifies the working tree to match the commit. ALL UNCOMMITTED CHANGES ARE LOST FOREVER.", "default": "N/A" },
+        { "flag": "<commit>", "description": "The commit to reset HEAD to. Can be a hash, a tag, or relative like `HEAD~1`.", "default": "HEAD" },
+        { "flag": "<file>", "description": "When used with a file path, `git reset` only unstages the file without moving HEAD.", "default": "N/A" }
+    ],
+    "examples": [
+        { "title": "Unstage a file", "description": "Accidentally ran `git add .`? This removes a file from the staging area.", "code": "git reset HEAD src/config.js\n\n# The file is still modified in your working directory,\n# it's just no longer staged for commit." },
+        { "title": "Undo last commit (keep changes)", "description": "You committed too early. Use --soft to undo the commit but keep the files staged.", "code": "git reset --soft HEAD~1\n\n# Now you can add more files and commit again" },
+        { "title": "Undo last commit (unstage changes)", "description": "Undo the commit and unstage the files. (The default --mixed behavior)", "code": "git reset HEAD~1\n\n# Your files are still modified, but not staged" },
+        { "title": "Throw away all uncommitted changes", "description": "DANGER: Revert your entire working directory back to the last commit.", "code": "git reset --hard HEAD\n\n# All unstaged and staged changes are deleted." }
+    ],
+    "commonMistakes": [
+        { "type": "danger", "text": "Using `--hard` permanently deletes any work that hasn't been committed. It does not go to the recycle bin. It's gone." },
+        { "type": "warning", "text": "Do not `git reset` commits that exist on the remote server (unless you are the only person working on the branch and intend to force-push)." }
+    ],
+    "relatedCommands": ["git-revert", "git-checkout", "git-clean", "git-reflog"]
+}

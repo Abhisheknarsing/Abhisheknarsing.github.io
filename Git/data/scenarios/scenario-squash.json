@@ -1,0 +1,35 @@
+{
+    "id": "scenario-squash",
+    "name": "Squash Messy Commits",
+    "tag": "Cleanup",
+    "problem": "You've been working on a feature and made 10 tiny, messy commits (like 'fix typo', 'update css', 'oops fixed css again'). You want to combine them into one clean commit before opening a pull request.",
+    "steps": [
+        {
+            "title": "Start an interactive rebase",
+            "description": "Tell Git you want to interactively rebase the last 10 commits. This opens your configured text editor.",
+            "code": "git rebase -i HEAD~10"
+        },
+        {
+            "title": "Change 'pick' to 'squash'",
+            "description": "In the editor, you'll see a list of your commits from oldest to newest. Leave the top one as `pick`. Change the word `pick` to `squash` (or just `s`) for all the others.",
+            "code": "pick a1b2c3d Add login form structure\nsquash e4f5g6h Add CSS styling\nsquash i7j8k9l Fix typo in button\nsquash m1n2o3p Fix CSS alignment\n\n# Save and close the editor."
+        },
+        {
+            "title": "Write the final commit message",
+            "description": "Git will open the editor again, combining all the commit messages into one file. Delete the messy ones and write a single, clean description.",
+            "code": "# Delete the old lines and write:\nAdd login form with validation\n\n- Implemented HTML structure\n- Added responsive CSS styling\n- Included client-side validation logic\n\n# Save and close."
+        },
+        {
+            "title": "Force push (if previously pushed)",
+            "description": "Because you rewrote history, your local branch no longer matches the remote. You must force-push.",
+            "code": "git push --force-with-lease"
+        }
+    ],
+    "alternatives": [
+        {
+            "title": "The reset shortcut (easier for beginners)",
+            "description": "Instead of interactive rebase, you can just soft reset and commit again.",
+            "code": "git reset --soft HEAD~10\n# All changes are now staged as one big chunk\ngit commit -m \"Clean combined commit message\""
+        }
+    ]
+}

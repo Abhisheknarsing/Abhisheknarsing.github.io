@@ -1,0 +1,86 @@
+{
+    "id": "git-add",
+    "name": "git add",
+    "category": "Snapshotting",
+    "shortDescription": "Add file contents to the staging area (also called the index). This is the step between editing files and committing — you choose exactly which changes to include in the next snapshot.",
+    "detailedDescription": "In Git, committing is a two-step process: first you **stage** changes with `git add`, then you **commit** them with `git commit`. The staging area (also called the index) acts as a buffer between your working directory and the repository.\n\nThis design gives you precise control. You can edit five files but only stage and commit two of them. You can even stage specific lines within a file using `git add -p`. This enables clean, focused commits that are easy to review and revert.\n\n**Key concept:** `git add` doesn't just mark files for tracking — it takes a snapshot of the file's current content. If you modify a file after staging it, the staged version won't include the new changes. You must run `git add` again to update the staging area.\n\nFor new (untracked) files, `git add` starts tracking them. For modified files, it stages the current content. For deleted files, it stages the removal.",
+    "syntax": "git add [-A | --all] [-p | --patch] [-n | --dry-run] [-f | --force] [--] <pathspec>...",
+    "parameters": [
+        {
+            "flag": "<pathspec>",
+            "description": "One or more file paths, directory paths, or glob patterns. Use `.` for the entire current directory. Supports patterns like `*.js` or `src/`.",
+            "default": "Required (unless -A)"
+        },
+        {
+            "flag": "-A / --all",
+            "description": "Stage ALL changes in the entire working tree: new files, modifications, and deletions. Equivalent to running `git add .` from the repository root.",
+            "default": "Only specified paths"
+        },
+        {
+            "flag": "-p / --patch",
+            "description": "Interactively select hunks (portions) of changes to stage. Git shows each change and asks whether to stage it (y), skip it (n), split it (s), or edit it (e). This is the key to making surgical, clean commits.",
+            "default": "Stage entire file"
+        },
+        {
+            "flag": "-n / --dry-run",
+            "description": "Don't actually stage anything — just show what would be staged. Useful for checking glob patterns or verifying your selection before committing.",
+            "default": "Actually stage"
+        },
+        {
+            "flag": "-f / --force",
+            "description": "Allow adding otherwise ignored files. Overrides `.gitignore` rules for the specified files.",
+            "default": "Respects .gitignore"
+        },
+        {
+            "flag": "-u / --update",
+            "description": "Only stage modifications and deletions of already-tracked files. Does NOT add new/untracked files. Useful when you want to commit changes to existing files without accidentally picking up new ones.",
+            "default": "Includes new files"
+        }
+    ],
+    "examples": [
+        {
+            "title": "Stage a single file",
+            "description": "The most basic usage. Stage one specific file for the next commit.",
+            "code": "git add README.md\n\n# Check what's staged:\ngit status\n# Output:\n# Changes to be committed:\n#   modified: README.md"
+        },
+        {
+            "title": "Stage all changes at once",
+            "description": "When you want everything in the current directory (and subdirectories) staged. The dot means 'current directory and below'.",
+            "code": "git add .\n\n# Or use -A to stage from the repo root regardless of\n# your current directory:\ngit add -A"
+        },
+        {
+            "title": "Stage changes interactively (patch mode)",
+            "description": "The most powerful staging technique. Review each change hunk-by-hunk and decide what goes into the commit. This enables clean, logical commits even after a messy editing session.",
+            "code": "git add -p\n\n# Git shows each hunk of changes:\n# @@ -10,3 +10,4 @@\n#  existing line\n# +new line\n#\n# Stage this hunk [y,n,q,a,d,s,e,?]?\n#   y = stage this hunk\n#   n = skip this hunk\n#   s = split into smaller hunks\n#   e = manually edit the hunk\n#   q = quit, don't stage remaining hunks"
+        },
+        {
+            "title": "Stage by file type using glob patterns",
+            "description": "Stage only JavaScript files, or only files in a specific directory.",
+            "code": "# Stage all .js files in the src directory\ngit add src/**/*.js\n\n# Stage all CSS files\ngit add '*.css'\n\n# Stage an entire directory\ngit add src/components/"
+        },
+        {
+            "title": "Force-add an ignored file",
+            "description": "Sometimes you need to track a file that's in .gitignore (like a specific config template).",
+            "code": "# .env.example is in .gitignore, but we want to track it:\ngit add -f .env.example"
+        }
+    ],
+    "commonMistakes": [
+        {
+            "type": "danger",
+            "text": "Running `git add .` before checking `git status` can accidentally stage sensitive files like `.env`, API keys, or build artifacts. Always review what you're staging."
+        },
+        {
+            "type": "warning",
+            "text": "If you modify a file AFTER running `git add`, the staged version is the OLD content. You must run `git add` again to update the staging area with the latest changes."
+        },
+        {
+            "type": "info",
+            "text": "To unstage a file (undo `git add`), use `git restore --staged <file>` (Git 2.23+) or `git reset HEAD <file>` (older versions). Neither command modifies your working directory."
+        },
+        {
+            "type": "success",
+            "text": "Get into the habit of using `git add -p` for all commits. It forces you to review every change, catches mistakes early, and produces much cleaner commit history."
+        }
+    ],
+    "relatedCommands": ["git-commit", "git-status", "git-diff", "git-reset", "git-rm"]
+}

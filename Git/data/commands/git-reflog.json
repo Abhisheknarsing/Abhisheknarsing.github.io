@@ -1,0 +1,27 @@
+{
+    "id": "git-reflog",
+    "name": "git reflog",
+    "category": "Inspection & History",
+    "shortDescription": "Show a log of all reference updates (HEAD movements). Your safety net for recovering lost commits, branches, and undoing mistakes.",
+    "detailedDescription": "The reflog (reference log) is Git's safety net. It records every time HEAD moves — every commit, checkout, rebase, reset, merge, and pull. Even if you accidentally delete a branch or do a hard reset, the reflog remembers where HEAD was.\n\nUnlike `git log` which shows the commit graph, `git reflog` shows a chronological list of YOUR local actions. It's not shared with the remote; it's personal to your machine.\n\nReflog entries expire after 90 days by default (30 days for unreachable commits). During that window, you can recover from almost any Git disaster by finding the desired state in the reflog and resetting to it.\n\nThink of it as Git's 'undo history' — it remembers states that are no longer reachable from any branch.",
+    "syntax": "git reflog [show] [--all] [--date=<format>] [<ref>]",
+    "parameters": [
+        { "flag": "(no arguments)", "description": "Show the reflog for HEAD — a chronological list of all HEAD movements.", "default": "HEAD reflog" },
+        { "flag": "<ref>", "description": "Show the reflog for a specific reference (branch). E.g., `git reflog show main`.", "default": "HEAD" },
+        { "flag": "--all", "description": "Show reflogs for all references, not just HEAD.", "default": "HEAD only" },
+        { "flag": "--date=<format>", "description": "Show dates in the specified format: relative, iso, short, etc.", "default": "Relative (@{N})" },
+        { "flag": "expire --expire=<time>", "description": "Delete reflog entries older than the specified time. Used for cleanup.", "default": "90 days" }
+    ],
+    "examples": [
+        { "title": "View your recent Git actions", "description": "See everything you've done recently in this repository.", "code": "git reflog\n\n# Output:\n# a1b2c3d HEAD@{0}: commit: Add login feature\n# e4f5g6h HEAD@{1}: checkout: moving from main to feature\n# i7j8k9l HEAD@{2}: pull: Fast-forward\n# m1n2o3p HEAD@{3}: commit: Update README\n# q4r5s6t HEAD@{4}: reset: moving to HEAD~2" },
+        { "title": "Recover a lost commit after hard reset", "description": "You did `git reset --hard` and lost commits. The reflog can save you.", "code": "# Oh no, I reset too far!\ngit reset --hard HEAD~5\n\n# Find the lost commit in the reflog:\ngit reflog\n# a1b2c3d HEAD@{1}: commit: Important work\n\n# Recover by resetting back to it:\ngit reset --hard a1b2c3d" },
+        { "title": "Recover a deleted branch", "description": "You deleted a branch and need it back.", "code": "# Find where the branch was:\ngit reflog | grep 'checkout: moving from deleted-branch'\n\n# Or just scan the reflog for the branch name:\ngit reflog --all | grep deleted-branch\n\n# Recreate the branch at the found commit:\ngit branch recovered-branch a1b2c3d" },
+        { "title": "Undo a bad rebase", "description": "A rebase went wrong. The reflog shows where you were before.", "code": "# The reflog shows the state before rebase:\ngit reflog\n# a1b2c3d HEAD@{0}: rebase (finish): ...\n# e4f5g6h HEAD@{5}: rebase (start): ...\n# i7j8k9l HEAD@{6}: checkout: moving from feature to main\n\n# Reset to the state before the rebase started:\ngit reset --hard HEAD@{6}" }
+    ],
+    "commonMistakes": [
+        { "type": "success", "text": "The reflog is your ultimate safety net. Before any scary operation (rebase, reset, filter-branch), note the current HEAD hash from `git reflog`. You can always get back to it." },
+        { "type": "warning", "text": "Reflog entries expire (default: 90 days, 30 for unreachable). Don't rely on the reflog for long-term recovery. If you need to keep something, create a branch or tag." },
+        { "type": "info", "text": "The reflog is LOCAL only. It's not pushed to remotes. If you delete and re-clone a repo, the reflog is gone. Teammates cannot see your reflog." }
+    ],
+    "relatedCommands": ["git-log", "git-reset", "git-branch", "git-checkout"]
+}

@@ -1,0 +1,25 @@
+{
+    "id": "git-cherry-pick",
+    "name": "git cherry-pick",
+    "category": "Undoing & Rewriting",
+    "shortDescription": "Apply the changes introduced by some existing commits onto the current branch. Used to surgically extract specific features or bug fixes.",
+    "detailedDescription": "The `git cherry-pick` command allows you to take a specific commit from one branch and apply it to another branch. Instead of merging the entire branch, you just pick the exact commit you need.\n\nWhen you cherry-pick a commit, Git creates a completely new commit on your current branch with the same changes and the same commit message, but it will have a different commit hash.\n\nThis is commonly used in hotfix scenarios: a developer fixes a bug on the `develop` branch, but that fix needs to be deployed immediately to `main` without bringing all the other unfinished features along with it.",
+    "syntax": "git cherry-pick [--edit] [-n] [-x] [--abort | --continue] <commit>...",
+    "parameters": [
+        { "flag": "<commit>...", "description": "One or more commit hashes to cherry-pick. You can also use a range: `commitA..commitB`.", "default": "Required" },
+        { "flag": "-e / --edit", "description": "Open the editor to let you modify the commit message before committing.", "default": "Keeps original message" },
+        { "flag": "-n / --no-commit", "description": "Apply the changes to your working directory and staging area, but do not create the commit automatically. Useful when cherry-picking multiple commits into a single new commit.", "default": "Auto-commits" },
+        { "flag": "-x", "description": "Append a line that says '(cherry picked from commit ...)' to the original commit message. Helpful for tracking where the fix originally came from.", "default": "No tracking note" },
+        { "flag": "--abort", "description": "Cancel the operation if you encounter a nasty conflict and want to bail out.", "default": "N/A" }
+    ],
+    "examples": [
+        { "title": "Cherry-pick a hotfix", "description": "Apply a bugfix from the develop branch directly to main.", "code": "git checkout main\ngit cherry-pick a1b2c3d\n\n# The changes from a1b2c3d are now on main" },
+        { "title": "Cherry-pick multiple commits", "description": "Bring over a sequence of related commits.", "code": "git cherry-pick a1b2c3d e4f5g6h i7j8k9l\n\n# Or a range (note: A..B does NOT include A, use A^..B to include A):\ngit cherry-pick a1b2c3d^..i7j8k9l" },
+        { "title": "Cherry-pick without committing", "description": "Bring over changes from another branch so you can modify them before committing.", "code": "git cherry-pick -n a1b2c3d\n\n# Changes are staged. Make your edits, then:\ngit commit -m \"Adapted feature for this branch\"" }
+    ],
+    "commonMistakes": [
+        { "type": "warning", "text": "Cherry-picking creates duplicate commits (same changes, different hashes). If you later merge the branches, Git is smart enough to handle the duplicates, but it can make history confusing. Use it sparingly." },
+        { "type": "danger", "text": "If the commit you're picking depends on a previous commit you DIDN'T pick, you will get severe merge conflicts." }
+    ],
+    "relatedCommands": ["git-merge", "git-rebase", "git-revert"]
+}

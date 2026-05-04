@@ -1,0 +1,24 @@
+{
+    "id": "git-bisect",
+    "name": "git bisect",
+    "category": "Tagging & Cleanup",
+    "shortDescription": "Use binary search to find the commit that introduced a bug. The most powerful debugging tool in Git.",
+    "detailedDescription": "When you discover a bug but don't know when it was introduced, `git bisect` is your best friend. You tell it one 'bad' commit (usually HEAD, where the bug exists) and one 'good' commit (a point in the past where you know it worked).\n\nGit then uses binary search to find the exact commit that broke the code. It checks out a commit halfway between the good and bad endpoints. You test the code and tell Git if it's `good` or `bad`. Git halves the search space again, and repeats.\n\nEven in a repository with 10,000 commits, Git can find the exact bug-introducing commit in about 14 steps.",
+    "syntax": "git bisect [start | bad | good | reset | run]",
+    "parameters": [
+        { "flag": "start", "description": "Begin a bisect session. Optionally provide the bad and good commits immediately: `git bisect start <bad> <good>`.", "default": "N/A" },
+        { "flag": "bad", "description": "Mark the current checked-out commit as broken.", "default": "N/A" },
+        { "flag": "good", "description": "Mark the current checked-out commit as working.", "default": "N/A" },
+        { "flag": "reset", "description": "End the bisect session and return to the branch you were on before starting.", "default": "N/A" },
+        { "flag": "run <cmd>", "description": "Fully automate the search by providing a script. Git runs the script at each step. If exit code is 0, it's good; if 1-127 (except 125), it's bad.", "default": "N/A" }
+    ],
+    "examples": [
+        { "title": "Manual bisect workflow", "description": "Find a bug by manually testing at each step.", "code": "# 1. Start the process\ngit bisect start\n\n# 2. Current version is broken\ngit bisect bad\n\n# 3. Version v1.0 was working fine\ngit bisect good v1.0\n\n# Git checks out a commit halfway. You test the app.\n# If it works:\ngit bisect good\n\n# If it's broken:\ngit bisect bad\n\n# Git repeats until it prints:\n# 'a1b2c3d is the first bad commit'\n\n# 4. End the session\ngit bisect reset" },
+        { "title": "Automated bisect with unit tests", "description": "If you have a test that fails when the bug is present, bisect can run automatically while you get coffee.", "code": "git bisect start HEAD v1.0\n\n# Tell Git to run the test script at each step\ngit bisect run npm run test:login\n\n# Git will find the bad commit automatically in seconds!" }
+    ],
+    "commonMistakes": [
+        { "type": "warning", "text": "Don't forget to run `git bisect reset` when you're done. Otherwise, you'll be left in a detached HEAD state somewhere in the middle of your history." },
+        { "type": "info", "text": "If a commit cannot be tested (e.g., the code doesn't compile at that point), run `git bisect skip` to let Git choose a nearby commit instead." }
+    ],
+    "relatedCommands": ["git-blame", "git-log", "git-checkout"]
+}

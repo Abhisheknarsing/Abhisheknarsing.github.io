@@ -1,0 +1,87 @@
+{
+    "id": "git-clone",
+    "name": "git clone",
+    "category": "Getting Started",
+    "shortDescription": "Clone an existing repository into a new directory. This copies all files, branches, and the complete commit history from a remote source.",
+    "detailedDescription": "The `git clone` command creates a full copy of an existing Git repository. Unlike downloading a ZIP, cloning preserves the entire commit history, all branches, and the remote connection. After cloning, you immediately have a working repository with `origin` already configured as the remote.\n\nWhen you clone, Git performs several operations behind the scenes: it creates a new directory, initializes a `.git` folder inside it, adds a remote called `origin` pointing to the source URL, fetches all branches and tags, and checks out the default branch (usually `main` or `master`) into the working directory.\n\nGit supports multiple protocols for cloning: HTTPS (most common, works through firewalls), SSH (requires key setup, no password prompts), and the Git protocol (fastest but no authentication). Choose based on your setup and security requirements.",
+    "syntax": "git clone [--depth <n>] [--branch <name>] [--single-branch] [--recurse-submodules] <repository> [<directory>]",
+    "parameters": [
+        {
+            "flag": "<repository>",
+            "description": "The URL or path of the repository to clone. Accepts HTTPS URLs (https://github.com/user/repo.git), SSH URLs (git@github.com:user/repo.git), or local paths (/path/to/repo).",
+            "default": "Required"
+        },
+        {
+            "flag": "<directory>",
+            "description": "The name of the new directory to clone into. If omitted, Git uses the repository name (e.g., 'repo' from 'repo.git').",
+            "default": "Repository name"
+        },
+        {
+            "flag": "--depth <n>",
+            "description": "Creates a shallow clone with only the last N commits of history. Dramatically reduces download size and time for large repositories. Useful for CI/CD pipelines where you only need the latest code.",
+            "default": "Full history"
+        },
+        {
+            "flag": "--branch <name> / -b <name>",
+            "description": "Instead of checking out the repository's default branch, check out the specified branch, tag, or commit.",
+            "default": "Remote HEAD (usually main/master)"
+        },
+        {
+            "flag": "--single-branch",
+            "description": "Clone only the history of a single branch (the one specified with --branch, or the default). Reduces clone size when you don't need other branches.",
+            "default": "All branches fetched"
+        },
+        {
+            "flag": "--recurse-submodules",
+            "description": "After cloning, initialize and clone all submodules within the repository. Without this, submodule directories will be empty.",
+            "default": "Submodules not initialized"
+        },
+        {
+            "flag": "--mirror",
+            "description": "Creates a mirror clone — a bare repository that is an exact copy of the remote, including all refs. Used for backup or migration purposes.",
+            "default": "Normal clone"
+        }
+    ],
+    "examples": [
+        {
+            "title": "Basic clone via HTTPS",
+            "description": "The most common way to clone. Works through firewalls and doesn't require SSH key setup. You'll be prompted for credentials if the repo is private.",
+            "code": "git clone https://github.com/facebook/react.git\n\n# This creates a 'react' folder with the full repository"
+        },
+        {
+            "title": "Clone via SSH (no password prompts)",
+            "description": "If you've configured SSH keys with GitHub/GitLab, this method is faster and doesn't require entering credentials. Essential for automated workflows.",
+            "code": "git clone git@github.com:facebook/react.git\n\n# Requires SSH key to be added to your GitHub account"
+        },
+        {
+            "title": "Shallow clone for CI/CD speed",
+            "description": "In CI pipelines, you rarely need the full history. A depth of 1 gives you only the latest commit, reducing clone time from minutes to seconds on large repos.",
+            "code": "git clone --depth 1 https://github.com/torvalds/linux.git\n\n# Linux kernel full clone: ~4.5 GB, 1M+ commits\n# Shallow clone (depth 1): ~200 MB, instant"
+        },
+        {
+            "title": "Clone a specific branch only",
+            "description": "When you only need a particular branch, combine --branch and --single-branch to save time and disk space.",
+            "code": "git clone --branch develop --single-branch https://github.com/user/repo.git\n\n# Only the 'develop' branch and its history are downloaded"
+        },
+        {
+            "title": "Clone into a custom directory name",
+            "description": "Override the default directory name to something more meaningful for your workflow.",
+            "code": "git clone https://github.com/user/api-service.git backend\n\n# Creates a 'backend' folder instead of 'api-service'"
+        }
+    ],
+    "commonMistakes": [
+        {
+            "type": "warning",
+            "text": "If you see `Permission denied (publickey)` when cloning via SSH, your SSH key isn't configured. Either switch to HTTPS or run `ssh-keygen` and add the public key to your Git hosting provider."
+        },
+        {
+            "type": "danger",
+            "text": "Don't clone repositories inside other Git repositories unless you intend to use submodules. Nesting repos causes confusing behavior where the inner repo's changes appear as a single untracked folder."
+        },
+        {
+            "type": "info",
+            "text": "Shallow clones (`--depth`) cannot push to remotes by default and some Git operations (like `git log` or `git blame`) will show incomplete history. Use `git fetch --unshallow` if you later need the full history."
+        }
+    ],
+    "relatedCommands": ["git-init", "git-remote", "git-fetch", "git-pull"]
+}

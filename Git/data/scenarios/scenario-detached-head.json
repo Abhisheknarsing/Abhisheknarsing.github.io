@@ -1,0 +1,30 @@
+{
+    "id": "scenario-detached-head",
+    "name": "Escape Detached HEAD",
+    "tag": "Fix Mistakes",
+    "problem": "You checked out a specific commit hash or tag, made some commits, and then realized you are in a 'detached HEAD' state. If you switch branches now, Git will orphan your new commits and they might be garbage collected.",
+    "steps": [
+        {
+            "title": "Save your commits to a new branch",
+            "description": "The solution is simple: you just need to give your current state a branch name.",
+            "code": "git branch temp-recovery\n\n# Or create and switch in one step:\ngit switch -c temp-recovery"
+        },
+        {
+            "title": "Merge into your target branch",
+            "description": "Now that your commits are safe on a branch, switch to the branch where they actually belong (e.g., `main`), and merge them in.",
+            "code": "git checkout main\ngit merge temp-recovery"
+        },
+        {
+            "title": "Clean up",
+            "description": "Delete the temporary branch.",
+            "code": "git branch -d temp-recovery"
+        }
+    ],
+    "alternatives": [
+        {
+            "title": "I already switched branches and lost the commits!",
+            "description": "If you switched branches before creating a new branch, the commits are hidden but not gone. Use the reflog to find them.",
+            "code": "git reflog\n\n# Look for the hash of your lost commit, then:\ngit branch recovered-work <hash>"
+        }
+    ]
+}

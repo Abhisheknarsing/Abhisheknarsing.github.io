@@ -1,0 +1,30 @@
+{
+    "id": "scenario-force-push",
+    "name": "Fix a Force Push Disaster",
+    "tag": "Disaster Recovery",
+    "problem": "You or a teammate accidentally ran `git push --force` on the `main` branch, overwriting history and deleting several days of work.",
+    "steps": [
+        {
+            "title": "Don't panic! Check the reflog",
+            "description": "Git's reflog records every movement of the HEAD pointer on your local machine. If you had the correct version of `main` locally recently, it's still there.",
+            "code": "git reflog\n\n# Look for the last known good state of main before the force push\n# It might look like: a1b2c3d HEAD@{5}: pull: Fast-forward"
+        },
+        {
+            "title": "Reset to the good state",
+            "description": "Once you find the hash of the commit before the disaster, hard reset your local `main` branch to it.",
+            "code": "git reset --hard a1b2c3d"
+        },
+        {
+            "title": "Force push the fix",
+            "description": "Now you need to force push again to restore the remote repository to the correct state.",
+            "code": "git push --force origin main"
+        }
+    ],
+    "alternatives": [
+        {
+            "title": "What if my local reflog doesn't have it?",
+            "description": "If you didn't have the recent code, ask the teammate whose code was deleted. Their local `main` branch or their reflog will have the correct commits. They just need to force push their local branch.",
+            "code": "# Teammate runs:\ngit checkout main\ngit push --force origin main"
+        }
+    ]
+}

@@ -1,0 +1,51 @@
+{
+    "categories": [
+        {
+            "name": "Getting Started",
+            "icon": "→",
+            "commands": ["git-init", "git-clone", "git-config"]
+        },
+        {
+            "name": "Snapshotting",
+            "icon": "●",
+            "commands": ["git-add", "git-commit", "git-status", "git-diff", "git-rm"]
+        },
+        {
+            "name": "Branching & Merging",
+            "icon": "⑂",
+            "commands": ["git-branch", "git-checkout", "git-switch", "git-merge"]
+        },
+        {
+            "name": "Remote & Sync",
+            "icon": "↕",
+            "commands": ["git-remote", "git-fetch", "git-pull", "git-push"]
+        },
+        {
+            "name": "Inspection & History",
+            "icon": "◔",
+            "commands": ["git-log", "git-show", "git-blame", "git-reflog"]
+        },
+        {
+            "name": "Undoing & Rewriting",
+            "icon": "↺",
+            "commands": ["git-reset", "git-revert", "git-stash", "git-rebase", "git-cherry-pick"]
+        },
+        {
+            "name": "Tagging & Cleanup",
+            "icon": "◆",
+            "commands": ["git-tag", "git-clean", "git-bisect"]
+        }
+    ],
+    "scenarios": [
+        { "id": "scenario-undo-commit", "name": "Undo the Last Commit" },
+        { "id": "scenario-merge-conflict", "name": "Resolve Merge Conflicts" },
+        { "id": "scenario-stash-switch", "name": "Context-Switch with Stash" },
+        { "id": "scenario-wrong-branch", "name": "Committed to Wrong Branch" },
+        { "id": "scenario-squash", "name": "Squash Messy Commits" },
+        { "id": "scenario-recover-file", "name": "Recover a Deleted File" },
+        { "id": "scenario-revert-production", "name": "Revert a Bad Deploy" },
+        { "id": "scenario-force-push", "name": "Fix a Force Push Disaster" },
+        { "id": "scenario-detached-head", "name": "Escape Detached HEAD" },
+        { "id": "scenario-large-file", "name": "Remove Large File from History" }
+    ]
+}

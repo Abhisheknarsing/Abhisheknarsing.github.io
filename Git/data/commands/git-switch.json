@@ -1,0 +1,26 @@
+{
+    "id": "git-switch",
+    "name": "git switch",
+    "category": "Branching & Merging",
+    "shortDescription": "Switch branches. Introduced in Git 2.23 as a safer, focused alternative to git checkout for branch operations only.",
+    "detailedDescription": "The `git switch` command was introduced in Git 2.23 (August 2019) to address the confusing dual nature of `git checkout`. While `git checkout` can both switch branches and restore files (two very different operations), `git switch` only handles branch switching.\n\nThis makes it safer — you can't accidentally destroy working directory changes by mistyping a command. It also has clearer error messages and more intuitive flag names (`-c` for create, instead of `-b`).\n\nThe command checks whether switching is safe (no conflicting uncommitted changes) before proceeding. If conflicts exist, it refuses and suggests committing, stashing, or using `--discard-changes`.",
+    "syntax": "git switch [-c <new-branch>] [--detach <commit>] [--discard-changes] <branch>",
+    "parameters": [
+        { "flag": "<branch>", "description": "The branch to switch to. Must already exist locally or as a remote-tracking branch.", "default": "Required" },
+        { "flag": "-c <new-branch>", "description": "Create a new branch and switch to it. The clearer equivalent of `git checkout -b`.", "default": "Switch to existing" },
+        { "flag": "-C <new-branch>", "description": "Like -c, but if the branch already exists, reset it to the start point.", "default": "N/A" },
+        { "flag": "--detach <commit>", "description": "Switch to a commit in detached HEAD mode. Makes the intention explicit, unlike checkout where detached HEAD was a common accident.", "default": "Attached to branch" },
+        { "flag": "--discard-changes", "description": "Throw away any uncommitted local changes when switching. Equivalent to checkout's implicit behavior with --force.", "default": "Refuse if conflicts" }
+    ],
+    "examples": [
+        { "title": "Switch to an existing branch", "description": "Simple and safe branch switching.", "code": "git switch main\ngit switch develop" },
+        { "title": "Create and switch to a new branch", "description": "The -c flag is more memorable than checkout's -b.", "code": "git switch -c feature-notifications\n\n# With a specific starting point:\ngit switch -c hotfix-auth origin/main" },
+        { "title": "Switch and discard local changes", "description": "When you want to abandon current work and switch branches.", "code": "git switch --discard-changes main\n\n# This destroys uncommitted changes — use with caution" },
+        { "title": "Track a remote branch automatically", "description": "If a branch exists on the remote but not locally, git switch creates it automatically.", "code": "git fetch origin\ngit switch feature-api\n# Automatically creates 'feature-api' tracking 'origin/feature-api'" }
+    ],
+    "commonMistakes": [
+        { "type": "info", "text": "`git switch` is available from Git 2.23+. If you get 'git: switch is not a git command', update Git. On macOS: `brew upgrade git`. On Ubuntu: `sudo add-apt-repository ppa:git-core/ppa && sudo apt update && sudo apt install git`." },
+        { "type": "warning", "text": "`git switch` cannot restore files. For that, use `git restore`. This separation is intentional — it prevents the accidental data loss that was common with `git checkout`." }
+    ],
+    "relatedCommands": ["git-checkout", "git-branch", "git-stash"]
+}

@@ -1,0 +1,31 @@
+{
+    "id": "git-push",
+    "name": "git push",
+    "category": "Remote & Sync",
+    "shortDescription": "Upload local branch commits to a remote repository. This is how you share your work with the team and back up your code.",
+    "detailedDescription": "The `git push` command transfers commits from your local repository to a remote repository. It updates the remote branch to include your new commits. If the remote branch has commits you don't have locally (someone else pushed first), Git rejects the push and asks you to pull first.\n\nThe first time you push a new branch, you need `-u` (or `--set-upstream`) to establish the tracking relationship between your local branch and the remote branch. After that, a simple `git push` is enough.\n\n**Force pushing** (`--force` or `--force-with-lease`) overwrites the remote branch with your local version. This is necessary after rebasing but dangerous on shared branches because it rewrites history for everyone. `--force-with-lease` is the safer alternative — it fails if someone else pushed commits you haven't seen yet.",
+    "syntax": "git push [-u] [--force | --force-with-lease] [--tags] [--delete] [<remote>] [<branch>]",
+    "parameters": [
+        { "flag": "<remote> <branch>", "description": "The remote and branch to push to. If tracking is set up, both can be omitted.", "default": "Tracked upstream" },
+        { "flag": "-u / --set-upstream", "description": "Set up tracking between your local branch and the remote branch. After this, you can just run `git push` without arguments.", "default": "No tracking setup" },
+        { "flag": "--force / -f", "description": "Force-push: overwrite the remote branch with your local branch. Dangerous on shared branches because it destroys remote commits.", "default": "Refused if non-fast-forward" },
+        { "flag": "--force-with-lease", "description": "Safer force push. Only succeeds if the remote branch is at the commit you expect (i.e., no one else pushed since your last fetch). Prevents accidentally overwriting teammates' work.", "default": "N/A" },
+        { "flag": "--tags", "description": "Push all local tags that are not on the remote. Normally, tags must be pushed explicitly.", "default": "Tags not pushed" },
+        { "flag": "--delete", "description": "Delete a remote branch. Equivalent to `git push origin :branch-name`.", "default": "N/A" },
+        { "flag": "--all", "description": "Push all local branches to the remote.", "default": "Current branch only" }
+    ],
+    "examples": [
+        { "title": "Push a new branch for the first time", "description": "Create a remote branch and set up tracking with -u.", "code": "git push -u origin feature-auth\n\n# Now future pushes just need:\ngit push" },
+        { "title": "Push to main after merging", "description": "Standard workflow: merge a feature branch into main, then push.", "code": "git checkout main\ngit merge feature-auth\ngit push" },
+        { "title": "Force push after rebase (safe)", "description": "After rebasing, your local history diverges from the remote. Use force-with-lease for safety.", "code": "git rebase main\ngit push --force-with-lease\n\n# If someone pushed to your branch in the meantime,\n# this fails instead of overwriting their work" },
+        { "title": "Delete a remote branch", "description": "Clean up remote branches after they're merged.", "code": "git push origin --delete feature-old\n\n# Or the shorthand syntax:\ngit push origin :feature-old" },
+        { "title": "Push tags", "description": "Tags aren't pushed by default. Push them explicitly.", "code": "# Push a specific tag:\ngit push origin v1.0.0\n\n# Push all tags:\ngit push --tags" }
+    ],
+    "commonMistakes": [
+        { "type": "danger", "text": "NEVER use `--force` on shared branches like main or develop. It rewrites history and can destroy other people's work. If you must force push, ALWAYS use `--force-with-lease` instead." },
+        { "type": "warning", "text": "If `git push` is rejected with 'non-fast-forward', it means the remote has commits you don't have. Run `git pull --rebase` first, then push again." },
+        { "type": "info", "text": "Force pushing to your own feature branch (after rebasing) is normal and safe, as long as you're the only one working on that branch." },
+        { "type": "success", "text": "Create a Git alias for safe force push: `git config --global alias.pushf 'push --force-with-lease'`. Now `git pushf` is safer than `git push -f`." }
+    ],
+    "relatedCommands": ["git-pull", "git-fetch", "git-remote", "git-tag"]
+}

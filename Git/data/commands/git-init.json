@@ -1,0 +1,72 @@
+{
+    "id": "git-init",
+    "name": "git init",
+    "category": "Getting Started",
+    "shortDescription": "Create an empty Git repository or reinitialize an existing one. This is the very first command you run when starting a new project with Git.",
+    "detailedDescription": "The `git init` command creates a new `.git` subdirectory in your current working directory. This subdirectory contains all the necessary repository metadata — the object store, refs, template files, and an initial `HEAD` file pointing to the yet-to-be-created default branch. No files are tracked yet; you must explicitly add them with `git add`.\n\nIf you run `git init` in a directory that already contains a `.git` folder, it will **not** overwrite existing configuration. Instead, it will re-initialize templates and can be used safely to pick up newly added templates or to move a repository to another location.\n\nThe `.git` directory is what makes a folder a Git repository. If you delete it, you lose all version history. Everything Git knows about your project lives inside this single hidden folder.",
+    "syntax": "git init [-b <branch-name>] [--bare] [--template=<dir>] [<directory>]",
+    "parameters": [
+        {
+            "flag": "<directory>",
+            "description": "If provided, Git will create a new directory with this name and initialize the repository inside it. If omitted, the current directory is used.",
+            "default": "Current directory (`.`)"
+        },
+        {
+            "flag": "-b <name>",
+            "description": "Use the specified name for the initial branch instead of the configured default. Since Git 2.28, the default branch name is configurable. Many teams now use `main` instead of `master`.",
+            "default": "Configured default (usually `master`)"
+        },
+        {
+            "flag": "--bare",
+            "description": "Creates a bare repository — one without a working directory. Bare repos are used as centralized remotes (like what GitHub hosts). You cannot edit files or make commits directly in a bare repo.",
+            "default": "false"
+        },
+        {
+            "flag": "--template=<dir>",
+            "description": "Specifies a directory from which templates will be copied into the new `.git` directory. Templates let you pre-configure hooks, exclude patterns, and other defaults.",
+            "default": "System default template directory"
+        },
+        {
+            "flag": "--shared[=<permissions>]",
+            "description": "Specifies that the repository is shared among several users. This allows users belonging to the same group to push into that repository. Can be `group`, `all`, `world`, or an octal number.",
+            "default": "Not set"
+        }
+    ],
+    "examples": [
+        {
+            "title": "Initialize a new project",
+            "description": "The most common usage. Navigate to your project folder and run git init. This creates the .git directory and you're ready to start tracking files.",
+            "code": "mkdir my-project\ncd my-project\ngit init\n\n# Output:\n# Initialized empty Git repository in /Users/you/my-project/.git/"
+        },
+        {
+            "title": "Initialize with main as default branch",
+            "description": "Many teams and platforms (GitHub, GitLab) now use 'main' as the default branch. Use -b to set this from the start rather than renaming later.",
+            "code": "git init -b main\n\n# This avoids having to do:\n#   git branch -m master main\n# after the first commit."
+        },
+        {
+            "title": "Set default branch name globally",
+            "description": "Instead of passing -b every time, configure Git to always use 'main' as the default branch for all new repositories.",
+            "code": "git config --global init.defaultBranch main\n\n# Now every 'git init' will use 'main' automatically"
+        },
+        {
+            "title": "Create a bare repository for a team server",
+            "description": "Bare repositories have no working directory — they only store Git data. This is what remote servers like GitHub use internally.",
+            "code": "git init --bare /srv/repos/team-project.git\n\n# Team members can now clone from this:\n# git clone user@server:/srv/repos/team-project.git"
+        }
+    ],
+    "commonMistakes": [
+        {
+            "type": "warning",
+            "text": "Running `git init` inside an existing repo will NOT destroy your history. It's safe but rarely needed. If you see 'Reinitialized existing Git repository', nothing was lost."
+        },
+        {
+            "type": "danger",
+            "text": "Never run `git init` in your home directory (`~`) or a very high-level folder. Git will try to track everything underneath, leading to massive, unusable repositories."
+        },
+        {
+            "type": "info",
+            "text": "If you're joining an existing project, you almost certainly want `git clone`, not `git init`. Use `git init` only when starting a brand new project from scratch."
+        }
+    ],
+    "relatedCommands": ["git-clone", "git-config", "git-add", "git-commit"]
+}

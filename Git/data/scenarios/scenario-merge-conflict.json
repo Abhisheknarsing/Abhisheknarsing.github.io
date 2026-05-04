@@ -1,0 +1,35 @@
+{
+    "id": "scenario-merge-conflict",
+    "name": "Resolve Merge Conflicts",
+    "tag": "Collaboration",
+    "problem": "You try to pull or merge, but Git complains that there are conflicts. Someone else edited the exact same lines of code as you, and Git doesn't know which version to keep.",
+    "steps": [
+        {
+            "title": "Identify conflicting files",
+            "description": "Git stops the merge and marks the repository as 'merging'. Run status to see exactly which files need your attention.",
+            "code": "git status\n# Look for files under \"Unmerged paths\""
+        },
+        {
+            "title": "Open files and fix conflicts manually",
+            "description": "Open the conflicting files in your editor. Git has injected conflict markers (`<<<<<<<`, `=======`, `>>>>>>>`). Choose which code to keep (yours, theirs, or a combination of both), and delete the markers.",
+            "code": "<<<<<<< HEAD (Current Change)\nconst dbHost = 'localhost';\n=======\nconst dbHost = process.env.DB_HOST;\n>>>>>>> feature-api (Incoming Change)\n\n// Edit to become:\n// const dbHost = process.env.DB_HOST;"
+        },
+        {
+            "title": "Stage the resolved files",
+            "description": "Once a file is fixed and saved, tell Git you've resolved it by staging it.",
+            "code": "git add src/config.js"
+        },
+        {
+            "title": "Finalize the merge",
+            "description": "Once all conflicts are resolved and staged, commit to complete the merge process.",
+            "code": "git commit\n# Git will auto-populate the commit message with 'Merge...'"
+        }
+    ],
+    "alternatives": [
+        {
+            "title": "Abort and bail out",
+            "description": "If the conflict is too complex and you want to give up and return to where you were before the merge started.",
+            "code": "git merge --abort"
+        }
+    ]
+}

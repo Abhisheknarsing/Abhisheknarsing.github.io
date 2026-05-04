@@ -1,0 +1,31 @@
+{
+    "id": "git-merge",
+    "name": "git merge",
+    "category": "Branching & Merging",
+    "shortDescription": "Join two or more development histories together. This integrates changes from one branch into your current branch.",
+    "detailedDescription": "Merging is how you combine the work from different branches. When you run `git merge feature` while on `main`, Git takes the changes from `feature` and integrates them into `main`.\n\nGit uses three types of merges:\n\n1. **Fast-forward merge**: If the target branch is directly ahead of the current branch (no divergent commits), Git simply moves the pointer forward. No merge commit is created. This happens when you're the only one working on a feature branch.\n\n2. **Three-way merge**: When both branches have new commits since they diverged, Git finds the common ancestor, compares both branches against it, and creates a new 'merge commit' with two parents. This is the most common type in team workflows.\n\n3. **Merge conflict**: When both branches modified the same lines in the same file, Git cannot automatically decide which version to keep. It pauses the merge and marks the conflicting sections for manual resolution.\n\nMerge commits create a non-linear history (a graph rather than a line), which preserves the full context of how features were developed in parallel.",
+    "syntax": "git merge [--no-ff] [--squash] [--abort] [--continue] <branch>",
+    "parameters": [
+        { "flag": "<branch>", "description": "The branch to merge into your current branch.", "default": "Required" },
+        { "flag": "--no-ff", "description": "Always create a merge commit, even if the merge could be fast-forwarded. This preserves the history of a feature branch's existence.", "default": "Fast-forward when possible" },
+        { "flag": "--ff-only", "description": "Refuse to merge unless fast-forward is possible. Useful for ensuring clean, linear history.", "default": "Allows all merge types" },
+        { "flag": "--squash", "description": "Take all commits from the branch and squash them into a single set of changes on top of the current branch, but don't commit. Gives you a chance to create one clean commit.", "default": "Preserves all commits" },
+        { "flag": "--abort", "description": "Abort the current merge process and restore the pre-merge state. Use when you're in the middle of a conflicted merge and want to start over.", "default": "N/A" },
+        { "flag": "--continue", "description": "After resolving conflicts, finalize the merge. Equivalent to `git commit`.", "default": "N/A" },
+        { "flag": "-m <message>", "description": "Set the merge commit message instead of using the default.", "default": "Auto-generated message" }
+    ],
+    "examples": [
+        { "title": "Basic merge (most common workflow)", "description": "Merge a feature branch into main after it's been reviewed and approved.", "code": "# Switch to the branch you want to merge INTO:\ngit checkout main\n\n# Merge the feature branch:\ngit merge feature-login\n\n# Output (fast-forward):\n# Updating a1b2c3d..e4f5g6h\n# Fast-forward\n#  src/login.js | 45 ++++++++++++++++++\n#  1 file changed, 45 insertions(+)" },
+        { "title": "Merge with a merge commit (--no-ff)", "description": "Force a merge commit even if fast-forward is possible. This makes it clear in the history that a feature branch existed.", "code": "git checkout main\ngit merge --no-ff feature-login\n\n# Creates a merge commit:\n# Merge branch 'feature-login' into main\n\n# In git log --graph, you'll see the branch and merge point clearly" },
+        { "title": "Squash merge (clean single commit)", "description": "Combine all commits from a branch into one change set. Great for messy feature branches with many WIP commits.", "code": "git checkout main\ngit merge --squash feature-experiment\n\n# All changes are staged but NOT committed.\n# Create a single clean commit:\ngit commit -m \"Add experimental search feature\"" },
+        { "title": "Resolve a merge conflict", "description": "When Git can't auto-merge, you must manually resolve conflicts in the affected files.", "code": "git merge feature-api\n# CONFLICT (content): Merge conflict in src/server.js\n\n# 1. Open the file and look for conflict markers:\n#    <<<<<<< HEAD\n#    your code\n#    =======\n#    their code\n#    >>>>>>> feature-api\n\n# 2. Edit the file to keep the correct code\n# 3. Remove the conflict markers\n# 4. Stage and commit:\ngit add src/server.js\ngit commit -m \"Merge feature-api, resolve server conflict\"" },
+        { "title": "Abort a messy merge", "description": "If a merge creates too many conflicts and you want to start over.", "code": "git merge --abort\n\n# Everything is restored to the state before the merge" }
+    ],
+    "commonMistakes": [
+        { "type": "danger", "text": "Never leave conflict markers (`<<<<<<<`, `=======`, `>>>>>>>`) in your code. They're valid syntax in no language and will cause runtime errors. Always search for them after resolving." },
+        { "type": "warning", "text": "Squash merges (`--squash`) don't create a merge connection in the graph. Git doesn't know the branch was merged, so `git branch --merged` won't list it. You must manually delete the source branch." },
+        { "type": "info", "text": "If you frequently get merge conflicts on the same files, consider merging main into your feature branch regularly (`git merge main` while on feature) to keep them in sync." },
+        { "type": "success", "text": "Use `git log --merge` during a conflict to see only the commits that are contributing to the conflict. This helps understand what both sides were trying to do." }
+    ],
+    "relatedCommands": ["git-branch", "git-checkout", "git-rebase", "git-pull"]
+}

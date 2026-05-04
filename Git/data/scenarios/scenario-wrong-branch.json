@@ -1,0 +1,30 @@
+{
+    "id": "scenario-wrong-branch",
+    "name": "Committed to Wrong Branch",
+    "tag": "Fix Mistakes",
+    "problem": "You made several commits, only to realize you were on the `main` branch instead of your feature branch. You haven't pushed yet.",
+    "steps": [
+        {
+            "title": "Create the branch you meant to be on",
+            "description": "First, create a new branch from your current state. This safely saves your commits to the correct branch name.",
+            "code": "git branch feature-new-ui\n\n# NOTE: Just branch, don't checkout yet."
+        },
+        {
+            "title": "Reset the main branch back",
+            "description": "Now you need to remove those commits from the main branch. Assuming you made 3 accidental commits, you reset main back by 3.",
+            "code": "git reset --hard HEAD~3\n\n# Using --hard makes your working directory match the old state."
+        },
+        {
+            "title": "Switch to your new branch",
+            "description": "Your commits are safe on the new branch, and main is restored. Switch to the feature branch to continue working.",
+            "code": "git checkout feature-new-ui"
+        }
+    ],
+    "alternatives": [
+        {
+            "title": "Using cherry-pick instead",
+            "description": "If you made the commits on the wrong branch AND pushed them, or if there are other commits mixed in.",
+            "code": "# 1. Switch to the correct branch\ngit checkout feature-branch\n\n# 2. Cherry-pick the specific accidental commits\ngit cherry-pick a1b2c3d e4f5g6h\n\n# 3. Go back to the wrong branch and revert them\ngit checkout main\ngit revert a1b2c3d\ngit revert e4f5g6h"
+        }
+    ]
+}

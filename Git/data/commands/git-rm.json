@@ -1,0 +1,67 @@
+{
+    "id": "git-rm",
+    "name": "git rm",
+    "category": "Snapshotting",
+    "shortDescription": "Remove files from the working tree and the staging area. Stages the removal so it will be recorded in the next commit.",
+    "detailedDescription": "The `git rm` command removes files from both your working directory and the Git staging area (index) in a single step. It's the Git-aware equivalent of deleting a file with `rm` and then running `git add` to stage the deletion.\n\nThe most common use case for `git rm` beyond simple deletion is `--cached`: removing a file from Git tracking while keeping it on disk. This is essential when you accidentally committed a file that should have been in `.gitignore` (like `.env`, `node_modules`, or build artifacts).\n\nAfter running `git rm`, you still need to commit the change to record the deletion in history. The file's content is still preserved in older commits and can be recovered if needed.",
+    "syntax": "git rm [--cached] [-r] [-f] [--dry-run] <file>...",
+    "parameters": [
+        {
+            "flag": "<file>",
+            "description": "One or more file paths or glob patterns to remove. Required.",
+            "default": "Required"
+        },
+        {
+            "flag": "--cached",
+            "description": "Remove the file from the staging area and stop tracking it, but keep the file in your working directory. The file becomes 'untracked'. This is the key flag for undoing accidental tracking.",
+            "default": "Removes from disk too"
+        },
+        {
+            "flag": "-r",
+            "description": "Recursive removal. Required when removing directories. Without this flag, git rm refuses to remove directories.",
+            "default": "Files only"
+        },
+        {
+            "flag": "-f / --force",
+            "description": "Override the up-to-date check. Required when the file has local modifications that haven't been committed, to prevent accidental data loss.",
+            "default": "Safety check enabled"
+        },
+        {
+            "flag": "-n / --dry-run",
+            "description": "Don't actually remove anything. Just show what would be removed. Useful when using glob patterns.",
+            "default": "Actually removes"
+        }
+    ],
+    "examples": [
+        {
+            "title": "Remove a file from repo and disk",
+            "description": "Delete a file and stage the deletion for the next commit.",
+            "code": "git rm old-feature.js\ngit commit -m \"Remove deprecated old feature\""
+        },
+        {
+            "title": "Stop tracking a file but keep it locally",
+            "description": "The most common real-world use. You committed .env or node_modules by mistake and want to untrack it without deleting it.",
+            "code": "# Stop tracking .env (keep the file on disk)\ngit rm --cached .env\n\n# Add it to .gitignore so it stays untracked\necho '.env' >> .gitignore\n\n# Commit both changes\ngit add .gitignore\ngit commit -m \"Stop tracking .env, add to gitignore\""
+        },
+        {
+            "title": "Untrack an entire directory",
+            "description": "Remove a directory like node_modules or dist from tracking.",
+            "code": "git rm -r --cached node_modules/\necho 'node_modules/' >> .gitignore\ngit add .gitignore\ngit commit -m \"Remove node_modules from tracking\""
+        }
+    ],
+    "commonMistakes": [
+        {
+            "type": "danger",
+            "text": "Without `--cached`, `git rm` DELETES the file from your disk. Make sure you mean it. If you only want to stop tracking, always use `--cached`."
+        },
+        {
+            "type": "warning",
+            "text": "Even after `git rm`, the file still exists in your Git history. Anyone who clones the repo can see it in old commits. For sensitive data like passwords, you need `git filter-branch` or BFG Repo-Cleaner to purge it from history."
+        },
+        {
+            "type": "info",
+            "text": "If you simply deleted a file with `rm` (not `git rm`), the deletion shows as 'Changes not staged'. Run `git add <deleted-file>` or `git rm <deleted-file>` to stage it."
+        }
+    ],
+    "relatedCommands": ["git-add", "git-commit", "git-clean", "git-reset"]
+}

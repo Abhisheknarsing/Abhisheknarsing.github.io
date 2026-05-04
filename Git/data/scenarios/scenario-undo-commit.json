@@ -1,0 +1,30 @@
+{
+    "id": "scenario-undo-commit",
+    "name": "Undo the Last Commit",
+    "tag": "Fix Mistakes",
+    "problem": "You accidentally committed files too early, included the wrong files, or made a typo in the commit message. You haven't pushed to the remote repository yet.",
+    "steps": [
+        {
+            "title": "Move HEAD backward while keeping changes",
+            "description": "If you haven't pushed yet, you can smoothly undo the commit while keeping your work intact. The `--soft` flag moves the history pointer back by one (`HEAD~1`), but leaves your changes precisely where they were in the staging area.",
+            "code": "git reset --soft HEAD~1"
+        },
+        {
+            "title": "Make your adjustments",
+            "description": "Now you can add forgotten files, unstage files you didn't mean to include, or fix typos in your code.",
+            "code": "git add forgotten-file.js\ngit reset HEAD accidental-file.css"
+        },
+        {
+            "title": "Commit again",
+            "description": "Create a new commit with the proper files and a correct message.",
+            "code": "git commit -m \"Proper commit message\""
+        }
+    ],
+    "alternatives": [
+        {
+            "title": "Quick message fix (The amend shortcut)",
+            "description": "If you just want to fix the message or add a single file without resetting entirely, use --amend.",
+            "code": "git add forgotten-file.js\ngit commit --amend -m \"Fixed message and added missing file\""
+        }
+    ]
+}

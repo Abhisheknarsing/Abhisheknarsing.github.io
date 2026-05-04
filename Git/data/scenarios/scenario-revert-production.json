@@ -1,0 +1,29 @@
+{
+    "id": "scenario-revert-production",
+    "name": "Revert a Bad Deploy",
+    "tag": "Disaster Recovery",
+    "problem": "You merged a pull request into `main` and deployed it, but it contains a critical bug that broke production. You need to undo it immediately without disrupting the team's history.",
+    "steps": [
+        {
+            "title": "Find the bad commit",
+            "description": "Look at the log to find the hash of the merge commit that introduced the bug.",
+            "code": "git log --oneline\n\n# Example output:\n# a1b2c3d Merge pull request #42 from feature/broken\n# e4f5g6h Fix typo in header"
+        },
+        {
+            "title": "Revert the merge commit",
+            "description": "Since it's a merge commit, you must use `-m 1` to tell Git to keep the main line of history and reject the branch that was merged.",
+            "code": "git revert -m 1 a1b2c3d\n\n# Git opens an editor with 'Revert \"Merge pull request #42\"'\n# Save and close."
+        },
+        {
+            "title": "Push the fix",
+            "description": "Push the revert commit to production immediately.",
+            "code": "git push origin main"
+        },
+        {
+            "title": "Fix the actual bug (Later)",
+            "description": "When you're ready to fix the bug, you'll need to revert the revert (otherwise Git won't let you merge the branch again), then apply the fix.",
+            "code": "git checkout -b feature/fix-broken\n\n# Revert the revert commit:\ngit revert <hash-of-the-revert-commit>\n\n# Now the broken code is back on your branch.\n# Fix the bug, commit, and open a new PR."
+        }
+    ],
+    "alternatives": []
+}
